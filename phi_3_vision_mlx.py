@@ -765,7 +765,7 @@ def get_api(prompt, n_topk=1, verbose=True):
     prompt = [prompt] if isinstance(prompt, str) else prompt
     vdb = VDB()
     codes = vdb([p.split('<|api_input|>')[0] for p in prompt])
-    codes = [code.format(prompt=prompt[i].split('<|api_input|>')[1].strip()) for i, sublist in enumerate(codes) for code in sublist]
+    codes = [code.format(prompt=(prompt[i].split('<|api_input|>')[1].strip()+'|').split('|')[0], prompt2=(prompt[i].split('<|api_input|>')[1].strip()+'|').split('|')[1]) for i, sublist in enumerate(codes) for code in sublist]
     if verbose:
         print('*** Obtained API Codes ***')
         for code in codes:

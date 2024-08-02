@@ -163,13 +163,21 @@ print('<|api_output|>'+result[0])
 """,
 """Text to speech
 ```python
-from gradio_client import Client
-client = Client("parler-tts/parler_tts_mini")
-result = client.predict(
-        text="{prompt}",
-        description="",
-        api_name="/gen_tts"
-)
+from parler_tts import ParlerTTSForConditionalGeneration
+from transformers import AutoTokenizer
+import soundfile as sf
+import torch
+device='mps'
+torch_dtype = torch.float16
+model = ParlerTTSForConditionalGeneration.from_pretrained("parler-tts/parler-tts-mini-expresso").to(device, dtype=torch_dtype)
+tokenizer = AutoTokenizer.from_pretrained("parler-tts/parler-tts-mini-expresso")
+prompt = "{prompt}"
+description = "{prompt2}"
+input_ids = tokenizer(description, return_tensors="pt").input_ids.to(device)
+prompt_input_ids = tokenizer(prompt, return_tensors="pt").input_ids.to(device)
+generation = model.generate(input_ids=input_ids, prompt_input_ids=prompt_input_ids).to(torch.float32)
+audio_arr = generation.cpu().numpy().squeeze()
+sf.write("audio.wav", audio_arr, model.config.sampling_rate)
 print('<|api_output|>'+result)
 ```
 """,
