@@ -1,0 +1,87 @@
+== GUI installation (recommended) ==
+
+The following is the recommended way of installing Telldus software for Ubuntu and Debian. This is not the most stripped down approach but it is the safest and most simplistic.
+
+=== Adding the Telldus Key ===
+
+These packages are signed with a unique key for added security. Synaptic needs to know this key in order to verify the packages' authenticity.
+ * Download the following file: http://download.telldus.com/debian/telldus-public.key
+ * From the Desktop, click System -> Administration -> Software Sources.
+ * Click the "Autentication" tab.
+ * Click "Import Key File" and choose the downloaded file and press OK.
+[[Image(keys.png)]]
+ * If any problems occur during the key import, please add the key by running this instead:
+{{{
+sudo apt-key add telldus-public.key
+}}}
+
+=== Adding the Telldus Repository ===
+
+Adding the Telldus Repository tells your system where to look for software from Telldus for installation and future updates
+ * From the Desktop, click System -> Administration -> Software Sources.
+ * Click the "Third Party Sofware" tab.
+ * Click "Add". For the Apt line type the following:
+  {{{deb http://download.telldus.com/debian/ stable main}}}
+Note, use "unstable" for now for Debian 9 based distributions.
+ * Click "Close".
+[[Image(sources.png)]]
+
+=== Installing telldus-core ===
+
+Now that the repository and key have been added, install telldus-core like any other program.
+ * Click System -> Administration -> Synaptic Package Manager
+ * Click "Reload"
+ * Search for "telldus-core"
+ * Mark telldus-core for installation and mark additional changes when prompted.
+ * Click "Apply" and agree to the changes after reading them.
+ * telldus-core is now installed and ready for use.
+
+=== Installing TelldusCenter ===
+
+To control or manage your devices via GUI, and allow connection to Telldus Live!, repeat the above
+steps for 'tellduscenter'. This package also requires 'libtelldus-core2' and 'libtelldus-gui2'.
+
+== Console based installation ==
+
+Add the following lines to your {{{/etc/apt/sources.list}}}:
+{{{
+deb http://download.telldus.com/debian/ stable main
+}}}
+
+The Telldus public key for apt-secure can be downloaded [http://download.telldus.com/debian/telldus-public.key here]. You can add this key with
+{{{
+sudo apt-key add telldus-public.key
+}}}
+
+or combine downloading and registering:
+{{{
+wget -q http://download.telldus.com/debian/telldus-public.key -O- | sudo apt-key add -
+}}}
+
+The key fingerprint is
+{{{
+70C4 10C9 D73D 53E8 38B3 1C58 5A94 9181 E501 EA76
+Telldus Technologies AB <info.tech@telldus.se>
+}}}
+
+Update the repository
+{{{
+sudo apt-get update
+}}}
+
+To install telldus-core, do
+{{{
+sudo apt-get install telldus-core
+}}}
+
+== Configuring ==
+
+After the installation of telldus-core, go on and [wiki:TellStick_conf "configure"] the receivers.
+
+== Beta code ==
+If you want to try the latest beta software, also add the following to {{{/etc/apt/sources.list}}}:
+
+'''Note! This is not recommended if your are not a developer wanting to help us test new code. It is called unstable for a reason! '''
+{{{
+deb http://download.telldus.com/debian/ unstable main
+}}}

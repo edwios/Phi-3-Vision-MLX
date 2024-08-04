@@ -1,0 +1,29 @@
+= Ulterius =
+
+Ulterius is a software for controlling and scheduling of a TellStick.
+
+Features:
+ * Ulterius does not need to be running to be able to run scheduled events. This is done by the scheduling system, built into Mac OS X.
+ * You can test any events by pushing the button "Test Event".
+ * Basic speech recognition. The software listens for the Escape button to be pressed and turns the devices on or off when it hears the commands "On" and "Off". Only english is supported so far due to the built in speech recognition engine only supports english.
+ * Only one TellStick is supported
+ * Only Leopard
+
+[[Image(Ulterius.png)]]
+
+== Download ==
+[http://www.tnwr.net/ulterius/Ulterius%200.4.7.zip Ulterius 0.4.7]
+
+[http://www.tnwr.net/ulterius/Ulterius%200.5.0.zip  Ulterius 0.5.0]
+
+[http://www.tnwr.net/ulterius/Ulterius%200.5.1.zip Ulterius 0.5.1]
+
+== Changes ==
+
+=== 0.5.1 ===
+ * Swedish localization
+ * Possibility to deactivate events
+ * Stores the events in the users library than the root library
+
+=== 0.5.0 ===
+ * Events sorted on weekday

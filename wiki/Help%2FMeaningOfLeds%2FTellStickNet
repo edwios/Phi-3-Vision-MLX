@@ -1,0 +1,20 @@
+''From firmware 3, the LEDs in TellStick Net describes the current status:''
+
+In normal operation, when not sending or receiving, the side LEDs are not lit, but the network port should have a steady yellow light, and the green light should blink occasionally.
+
+If the network LEDs are not lit, please check power and ethernet connections.[[BR]][[BR]]
+
+'''Tellstick Net network port'''
+|| ''Pattern'' || ''Description'' ||
+|| Blinking green at constant intervals || Bootloading ||
+|| Steady yellow || Link ||
+|| Blinking sporadically green || Communicating ||
+[[BR]][[BR]]
+'''TellStick Net side LEDs'''
+|| || ''Pattern'' || ''Description'' || ''Details'' ||
+|| [[Image(iconTellStickNet_Light80_steadyred.png, nolink)]] || Steady  red || Waiting for IP || Trying to acquire an IP via DHCP ||
+|| [[Image(iconTellStickNet_Light80_steadypurple.png, nolink)]] || Steady purple || Getting server || Querying which server it should connect to. This will be successful or timeout so quickly that it will probably never be noticed. Will reboot on timeout. ||
+|| [[Image(iconTellStickNet_Light80_steadyblue.png, nolink)]] || Steady blue || Connecting to server || Trying to connect to assigned server. This will be successful or timeout so quickly that it will probably never be noticed. If it times out, TellStick Net will reboot and try a different server ||
+|| [[Image(iconTellStickNet_Light80_blinkblue.gif, nolink)]] || Blinking blue at constant intervals || Waiting for reboot || After disconnection, TellStick Net will wait for a random time interval before rebooting and connection with our servers again. This is to avoid flooding if many TellStick Net are disconnected and then trying to reconnect at the same time. ||
+|| [[Image(iconTellStickNet_Light80_pulseblue.gif, nolink)]] || Pulsing blue || Receiving data || Receiving data from a recognized device, for example a remote control or a temperature sensor. ||
+|| [[Image(iconTellStickNet_Light80_pulsered.gif, nolink)]] || Pulsing red || Sending data || Sending data, triggered from for example Telldus Live! or a schedule. || 

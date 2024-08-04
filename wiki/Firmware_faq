@@ -1,0 +1,8 @@
+[[BR]][[BR]][[BR]]
+=== Questions ===
+Q: The firmware software says "No TellStick found". What can I do?
+* A1: Are your computer connected wirelessly to the network? Try deactivating wifi and connect the computer with a cable instead.
+* A2: Try connecting the TellStick Net and your computer the another network. Maybe at a friends house or the office?
+
+Q: I lost the power while flashing my TellStick Net and now it is bricked, what can I do?[[BR]]
+A: Don't worry. It will probably be possible to fix it without sending your device to us. [wiki:How_to_restore_a_bricked_TellStick_Net "Please see our guide"].

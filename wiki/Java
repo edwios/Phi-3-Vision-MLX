@@ -1,0 +1,129 @@
+= Java =
+
+== Tellstick ==
+
+
+=== Requirements ===
+
+To be able to use your TellStick from Java your OS must look at it as a serial unit. In Linux this is relatively simple as the unit is installed as a usual unit under /dev and you can then use e.g. javacomm to work with the unit. In Windows it is harder as the unit does not show up as a usual serial connection. You can use JNI to call one of the DLL's that exist to communicate with TellStick. If there will be VCP-drivers for Windows (Virtual Communication Port, make a USB-unit look like a regular serial port) the same example as for Linux can be used.
+
+You also need a deveopment kit for Java and the possibility to edit your own softwares. The simplest solution is to use one of the free development environments that are available:
+  * [http://www.netbeans.org/ Netbeans]
+  * [http://www.eclipse.org/ Eclipse]
+
+Development kit (JDK):
+
+    * Sun's javahemsida 
+
+It is very simple to write a class in javacomm representing your TellStick making it possible for you to send the right strings to it. Remember that the Java coding usually is unicode but when you work with TellStick you want the regular 8-bits ASCII. This means you have to be extra careful if you are to send non-ASCII-letters and digits (e.g. åäö). Also remember the data type in java is byte 8 bits while a char can contain a "java sign" (normally 16 bits).
+
+For a simple start project you can retrieve [http://flax.homelinux.org/~flax/rfcmd_java.tar.gz Simple project in Netbeans] and look in the code. TellStick has an own class and there is a first try to create a hierarchy to manage several types of units.
+
+In the example (which is a straight adjustment of rfcmd.c) the following is assumed about the managed units (NEXA):
+
+* A command to a remote unit is 12 bits long. The bits are sent in reverse order (low to high) and in the order house (4 bits), channel (4 bits) and command (4 bits). Command is somewhat special as bit 1 is zero, bit 2 and 3 in the block have to be ones, while the command is stored in bit 4. (i.e. in the normal order command is always 011X, where X is one for "one" and zero for "off")
+
+House is given as A-P (numerical value 0-15) channel is given as 1-16 (numerical value 0-15)
+
+In the string that is sent the following is applied: The string is started out with the character "S", the bit string is then sent with the string " `` " for a one, the string " ` `" for a zero and is ended with the character "}+".
+
+Example: House C, channel 5 and the command "on", leads to numerical house = 2, channel = 4 and command = 1. Bit pattern: (command)1110 (channel)0100 (house)0010. As we have to send them in reverse order the pattern to send is: 010000100111
+
+After conversion to strings for one/zero we retrieve:
+
+{{{
+
+" ` ` ``  ` ` ` ` ` ` ` ` `` ` ` ` ` ``  ``  `` "
+    0   1   0   0   0   0   1  0   0   1   1   1
+
+}}}
+
+Add start/end characters: "S ` ` `` ` ` ` ` ` ` ` ` `` ` ` ` ` `` `` `` }+"
+
+About the same procedure is used for other types of units but the represenation for one/zero can differ. Se rfcmd.c for example. Eventually also the order of the bit string can vary.
+
+In the class NEXAUnit.java there is some code that may be helpful.
+
+== TellStickNet ==
+
+Telldus TellStickNet is designed to use Telldus online servers and telldus live API, but it is possible to use TellStickNet as listening device using TCP/IP locally.
+
+The first approach is described here
+http://developer.telldus.se/blog/2012/03/02/help-us-develop-local-access-using-tellstick-net-build-your-own-firmware is 
+
+The second approach is to make changes to the local network DNS and "emulate" telldus live.
+
+=== Network configuration ===
+The TellStickNet is performing the folowing operations at boot:
+1 - request ip address using dhcp
+2 - resolve api.telldus.com using dns
+3 - HTTP request to api.telldus.com to get url to telldus live server
+4 - connect to telldus live server, register and exchange data.
+
+In order to make TellStickNet connect to you own software, you will have to setup and configure a local dns server and override the dns entries for telldus.com and telldus.se.
+
+My dns entries looks like this:
+{{{
+telldus.com
+    api        10.0.1.5
+    developer  62.20.121.252
+    download   194.30.169.113
+    local      10.0.1.5
+    login      79.99.3.85
+    www        194.30.169.113
+telldus.se
+    developer  62.20.121.252
+}}}
+
+10.0.1.5 is my local computer running http server and the software to emulate telldus live.
+
+=== HTTP configuration ===
+The TellStickNet is getting the address of the telldus live by asking api.telldus.com using a HTTP get.
+
+Simply setup a HTTP server somewhere and put a file named assign in a directory called server in the webroot.
+
+The assign file should contain:
+{{{
+11:local.telldus.comiAFCAs
+}}}
+OBS the address must have 5 letters as computer name.
+
+=== Software ===
+The zip file JavaTellStickNet_20120804 contains a java application witch communicate with tellstick net.
+This first beta version can only listen and parse nexa protocol (not self learning).
+
+If you are in a hurry, just use include the lib JavaTellStickNet.jar and toel.jar in your project and use the code:
+{{{
+    public void Start() {
+        
+        boolean proxyMode = false;                  // Set to true if you want the software to proxy data to Telldus Live real server
+        
+        Server server = new Server(proxyMode);
+        //server.setLiveIp("79.99.3.85");           // Uncomment to change the default ip
+        //server.setLivePort(45002");               // Uncomment to cahnge the default port
+        
+        // Start the server
+        server.start();
+        
+        // Register event listener
+        EventHandler.getInstance().subscribe(Event.TELLSTICK_EVENT, this);
+       
+        // EXAMPLE CODE: Run for 1 minute
+        long start = System.currentTimeMillis();
+        while (server.isRunning()) {
+            Dev.sleep(100);
+            if ((System.currentTimeMillis()-start)>60000) break;
+        }
+        
+        // Shutdown everything
+        server.shutdown();
+        
+    }
+
+    @Override
+    public void eventTriggered(EventIF event) {
+        System.out.println(event.getMessage());
+        // Your code here...
+    }
+}}}
+

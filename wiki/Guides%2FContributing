@@ -1,0 +1,62 @@
+== How to contribute code ==
+Since most of Telldus code is released as Open Source it is not only possible for everyone to read the code, but everone can contribute with updates, and we encourage you to do so.
+
+To ease up the development we are using git for the code and mirror it on two of the bigger git hosting sites; Gitorious and GitHub.
+
+Why having the code in three places?[[BR]]
+We belive it should be easy to help out. Some prefer one platform over the other. By offering the code on multiple places you can contribute from the platform you prefer.
+
+New to Git?[[BR]]
+There is some great guides available on the internet. One we like is http://progit.org/book/
+
+=== Telldus repository ===
+Our main repository is hosted for anonymous access here:
+http://git.telldus.com/telldus.git
+
+For small updates this repository is probably the easiest way to get started.
+Check out the code using the following command:[[BR]]
+{{{
+$ git clone http://git.telldus.com/telldus.git
+}}}
+
+Change some files and commit them back to your clone:[[BR]]
+{{{
+$ git add a-changed-file
+$ git commit -m "Changed the file a-changed-file"
+}}}
+
+For sending patches to us you can create patch-files using the format-patch command.
+{{{
+$ git format-patch origin/master
+}}}
+This command creates one or many numbered *.patch files, one for each commit. In this case only one file named {{{0001-Changed-the-file-a-changed-file.patch}}}
+
+Create a ticket, describing the change, and attach the patchfiles you have for the bug/feature.
+
+=== GitHub ===
+
+The workflow for GitHub is quite similar. This is suitable if you plan on contributing more than once or twice.
+
+You need to have a user account on the site first. You can then fork our repository, creating your own, before cloning the repository.
+
+Our GitHub the repositories are available here:[[br]]
+https://github.com/telldus
+
+When you have changed some files and commited them you can push them back to GitHub. When you are ready to contribute back to Telldus, use the "Pull request feature" and we will be alerted of your changes.
+
+=== Changes to the code ===
+
+In order for us to accept the changes to the mainline branch there are some rules that must be followed.
+
+ * Binary compability must be kept. This means you cannot change anything in already public functions. The public functions are the ones in [doxygen:telldus-core_8h_source.html telldus-core.h].
+ * The code must compile and run on Windows, Mac OS X and Linux.
+ * New dependencies on external libraries cannot be added. The code must be easily ported to embedded platforms.
+ * Read and follow our [wiki:Guides/Contributing/CodingStyle Coding Style]
+
+=== Agreement ===
+
+Before contributing code, you have to agree to our terms and conditions. This 
+is to make sure that every part of the code is free, that it will stay that 
+way and that we really are allowed to distribute it as open source.
+
+Go on and [/contributoragreement read and sign] the agreement.

@@ -1,0 +1,9 @@
+= Latitude och Longitude in the configuration file =
+
+The settings for latitude and longitude today exists in the software.
+
+The following variables should be adapted to your geographical location and system setup 
+
+my $LATITUDE = "65.603"; # 65.603N 22.18W -> Luleå, Sweden my $LONGITUDE = "22.18";
+
+This does not come through anywhere and the effect is that those of us living in the south part of Sweden have our lamps turned on to late. To make my lamps turn on before it gets dark I have to change the latitude. These setting should instead be made in the configuration file.

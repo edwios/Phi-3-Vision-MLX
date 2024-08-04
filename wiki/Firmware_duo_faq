@@ -1,0 +1,4 @@
+[[BR]][[BR]][[BR]]
+=== Questions ===
+Q: I have updated the firmware in TellStick Duo, but want to downgrade again. How do I do that?[[BR]]
+A: Download an older firmware ([http://download.telldus.com/TellStick/Software/firmware/old/tellstick_duo_fw4.hex]), stop the service as described in the guide, drag-and-drop the .hex-file to TellStickFlasher.exe (located in your TelldusCenter installation folder), and follow the instructions.

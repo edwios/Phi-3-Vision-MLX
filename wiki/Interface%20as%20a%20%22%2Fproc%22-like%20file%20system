@@ -1,0 +1,52 @@
+= Interface as a "/proc"-like file system =
+
+To simplify for scripting. In other words: I have three lamps in my home, the hallway, the kitchen, the dining room. In a virtual file system (FUSE?) I hav three corresponding files, like this:
+
+ /tell/hallen [[BR]]
+ /tell/koket [[BR]]
+ /tell/vardagsrummet [[BR]]
+
+If I list a file I can see the current status of the lamp (so the system has to listen for the usage of remote controls + keep track of whether its status is changed through the own interface).
+
+For example it could look like this:
+
+{{{
+
+ # cat /tell/hallway
+ 1
+ # cat /tell/kitchen 0
+
+}}}
+
+Above the hallway lamp is switched on (/tell/hallway contains "1" for "on") but the kitchen lamp (/tell/kitchen) is turned off (0). Let us turn the hallway off as well:
+
+{{{
+
+ # cat /tell/hallen
+ 1
+ # echo 0 >/tell/hallen
+ # cat /tell/hallen
+ 0
+
+}}}
+
+Simply write a zero to it! :)
+
+The concept can be extended with under catalogues for different rooms and files for lamps in them, moving digits (with a digit between 0 and 1) for dimmers, ev. other detectors would be possible to enter into showing temperature, movement, light in different parts of the house. Etc.
+
+The main point is that with a similar system it would be extremely easy to create simple shell scripts for controlling lamps and other appliances. With a more advanced shell (e.g. zsh) very powerful solutions can be made easily. For example turning all lamps off:
+
+{{{
+
+ echo 0 >/tell/**/*(.)
+
+}}}
+
+
+== Svar  ==
+
+Did you check out TellstickController which practically has everything you want though not exposed as a /proc file system. TellStick cannot listen to the status of lamps. Instead this will be a guess. If you only run the script it is ok, but if you are to mix the script with a remote control the TellStick will never know the status of a lamp.
+
+  * Thank you for this answer. I had a look at Tellstickcontroller and it is an alternative. Though I have started to wonder what my alternatives to the TellStick are. I would still like to have something that could detect remote control signals. (i.e. a receiver) and thereby keep track of more remote control signals than those sent out by own transmitters. Most of all I would like a system where one could ask for the status of the receiver. Are there any systems like that? Which ones and what is the price? 
+
+  * With that outspoken, I have to say I find TellStick easy and effective to use for simpler applications. It is only the degree of control that I am not satisfied with.

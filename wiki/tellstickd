@@ -1,0 +1,108 @@
+= tellstickd =
+
+''' This is a third party application and Telldus will unfortunately not be able to provide customer support for its functions. '''
+
+
+
+== Download ==
+
+[http://download.telldus.se/TellStick/Software/Tellstickd/ Stable version]
+
+
+== Description ==
+
+A simple program to make on and off commands for a number of remote receivers by using rfcmd. It has the possibility to let sunrise and sunset control (that is to turn off when the light comes and to turn on when it gets dark). The program opens for several on- and off commands per day for each remote receiver. It is also possible to let on and off commands vary randomly within certain limits. In the downloadable file init scripts for the Redhat- and Debian types of systems are available. With these it is possible to make tellstickd to start at the boot of the computer.
+
+tellstickd is written in perl and demands a couple of add-on modules other than those included in the standard installation:
+
+  * DateTime
+  * DateTime::Event::Sunrise 
+
+
+Parameters that are possible to control are:
+
+  * Which weekdays are affected. This means it is made possible to have different programs for different days.
+  * Possibility to have different programs for different weeks (odd/even).
+  * Time for turning on and eventually a permitted interval.
+  * Time for turning off and eventually a permitted interval.
+  * Making the unit turn off during the time when the sun is up.
+  * How long time before/after sunrise the unit should be turned off (before is given with a minus (-) in the configuration file).
+  * How long time before/after sunset the unit should be turned off (before is given with a minus (-) in the configuration file).
+
+== Rules ==
+
+Rules for the switch is made in the configuration file and looks like the following example (from version 0.5.0):
+
+{{{
+
+NEXA A1 12345 05:30 22:20-23:00 10 20
+
+}}}
+
+The rule above refers to control of the Nexa switch A1. This means the switch will turn on 5:30 am and turn off between 10:20 pm and 11:00 pm (randomly chosen). More than this the lamp will be turned off in day time ten minutes after sunset and 20 minutes before sunrise. This will be executed monday to friday (12345).
+
+If you want a lamp to the turned on all day (without being turned off during the light period of the day) the can be done with the following rule. In detail this means the lamp will be turned on at 7:30 am and turned off 10:00 pm in all days of the week (1234567).
+
+{{{
+
+NEXA A1 1234567 07:30 22:00
+
+}}}
+
+If youu want different programs for different weeks this can be done according to below:
+
+{{{
+
+NEXA A1 o1234567 07:30-08:00 22:00-23:00 15 15  (udda veckor)
+
+NEXA A1 e1234567 06:30-07:00 21:45-22:30 15 15  (jämna veckor)
+
+}}}
+
+Installation instructions are included in the file which downloaded. Note that values for latitude and longitude should be adjusted for the lamps to be turned on at the right time. This is done in the program file (/usr/local/bin/tellstickd) where the settings ($LATITUDE = "65.603"; och $LONGITUDE = "22.18";) are found in the beginning of the file.
+
+
+== Example ==
+
+An example of a complete configuration file for a remote switch may look as follows:
+
+{{{
+
+latitude = 65.603
+longitude = 22.18
+timezone = Europe/Stockholm
+rfcmd = /usr/local/bin/rfcmd
+tellstick_device = /dev/tellstick
+log_file = /var/log/tellstickd
+pid_file = /var/run/tellstickd.pid
+
+# Dining room window
+NEXA A1 o12345 05:30 22:20-23:00 10 20
+NEXA A1 e12345 05:45 22:40-22:50 10 20
+NEXA A1 67 05:30-06:00 22:40-23:00 10 20
+
+}}}
+
+
+== Argument ==
+
+Usage: tellstickd [ARGS]
+
+-c, --config filename   Searchpath to configuration file, if not given /etc/tellstickd.conf is assumed.
+-d, --daemon            Run the program as a daemon and write a logfile.
+-h, --help              Show this message and exit.
+--simulate              Run in foreground, log to console, no actual device operations performed.
+
+
+== SVN ==
+
+The latest version is available in the git repository according to the information below. These are no guarantees that this version works at all, but in most cases it does.
+
+git clone [http://git.telldus.com/telldus.git][[BR]]
+cd telldus/3rdparty/tellstickd
+
+
+== Wish list ==
+
+[wiki:'Interface as a "/proc"-like file system'] [[BR]]
+[wiki:'Latitude och Longitude in the configuration file']

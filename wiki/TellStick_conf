@@ -1,0 +1,278 @@
+= tellstick.conf =
+
+The file {{{/etc/tellstick.conf}}} is the file where all devices used by TellStick is configured under Linux. Each device is configured in its own block with the parameter as name/value-pairs:
+{{{
+device {
+  foo = "bar"
+}
+}}}
+A device has at least four values and another block names {{{parameters}}}. A typical device can look like this:
+{{{
+device {
+  id = 1
+  name = "Device 1"
+  protocol = "arctech"
+  model = "codeswitch"
+  parameters {
+    house = "A"
+    unit = "1"
+  }
+}
+}}}
+
+ id::
+  This is a number and must be unique for each device.
+
+ name::
+  A name for easy identification of the device.
+
+ protocol::
+  This is the protocol the device uses. More on the different protocols later down.
+
+ model::
+  The parameter model is only used by some protocols where there exists different types of devices using the same protocol. This can be dimmers versus non-dimmers, codeswitch versus selflearning etc. If the devices are configured from TelldusCenter, this string will also be followed by a brand name, to allow for TelldusCenter to show the correct device brand. E.g., the string will be appended by: ":proove".
+
+ parameters::
+  This block depends on the protocol specified and is explained under each protocol.
+
+== Protocols ==
+
+=== arctech ===
+This protocol is used by a lot of devices. Some of them includes:
+ * Byebye Standby
+ * Chacon
+ * CoCo Technologies
+ * HomeEasy
+ * Intertechno
+ * Kappa
+ * KlikAanKlikUit
+ * Nexa
+ * Proove
+ * Rusta
+ 
+It has four different models:
+
+ codeswitch::
+  This types of devices uses dials on the receiver and remote to address them. The parameter {{{house}}} can be A to P and the {{{unit}}} 1 to 16. A typical parameters-block can look like:
+{{{
+parameters {
+  house = "A"
+  unit = "1"
+}
+}}}
+
+ bell::
+  This is bells of the codeswitch type. It only uses {{{house}}} and just as model {{{codeswitch}}} it is A to P. Example:
+{{{
+parameters {
+  house = "C"
+}
+}}}
+
+ selflearning-switch::
+  Requires TellStick batch >= 5, TellStick Duo or TellStick Net[[BR]]
+  The newer ones where the code is learned by the remote/TellStick. Instead of housecodes A to P this is now 1 to 67108863. The unitcode is still 1 to 16. Example:
+{{{
+parameters {
+  house = "953934"
+  unit = "1"
+}
+}}}
+
+ selflearning-dimmer::
+  Requires TellStick batch >= 5, TellStick Duo or TellStick Net[[BR]]
+  This is the same as {{{selflearning-switch}}} only these devices supports dimming-commands
+
+=== brateck ===
+Requires TellStick batch >= 5, TellStick Duo (sending only) or TellStick Net (sending only)[[BR]]
+This protocol is used by some projector screens. Example:
+ * Roxcore
+
+The only parameter used in this protocol is {{{house}}}. The code is 8 tri-state values soldered into the pcb. The state can be "1", "0" or "-".
+A real world example can be found here: http://www.telldus.se/forum/viewtopic.php?t=416
+
+Example:
+{{{
+parameters {
+  house = "101-1011"
+}
+}}}
+
+=== everflourish ===
+Requires TellStick batch >= 5, TellStick Duo (sending only) or TellStick Net (sending only)[[BR]]
+Added to telldus-core in 2.0.2.
+ This is the selflearning protocol. For the codeswitch, take a look at {{{risingsun}}}.
+
+Brands:
+ * Clas Ohlson
+ * GAO
+
+The protocol uses {{{house}}} (0 to 16383) and {{{unit}}} (1 to 4). Example:
+{{{
+parameters {
+  house = "117"
+  unit = "2"
+}
+}}}
+
+=== fuhaote ===
+Requires TellStick batch >= 5, TellStick Duo (sending only) or TellStick Net (sending only)[[BR]]
+Added to telldus-core in 2.0.3.
+ The configuration of these devices is very similar to {{{sartano}}} but they are not compatible with each other.
+
+Brands:
+ * HQ
+ * Rusta
+
+It uses the parameter {{{code}}} and consists of ten ones and zeros. Example:
+{{{
+parameters {
+  code = "0010010100"
+}
+}}}
+
+=== hasta ===
+TellStick Duo and TellStick Net can only send, not receive this protocol[[BR]]
+Blinds[[BR]]
+Uses {{{house}}} (1 to 65536) and {{{unit}}} (1 to 15). Example:
+{{{
+parameters {
+  house = "1"
+  unit = "1"
+}
+}}}
+
+=== ikea ===
+These receivers is not sold by Ikea anymore. There is both dimmers and non dimmers. One thing that differs this protocol against all other is that it can control up to ten receivers with just one device.
+It uses the parameters {{{system}}}, {{{units}}} and {{{fade}}}:
+ {{{system}}} can be 1 to 16.
+
+ {{{units}}} is a comma-separeted list of receivers to address (1 to 10).
+
+ {{{fade}}} is either {{{true}}} or {{{false}}} and tells a dimmer if is should fade smooth or instand between values.
+
+Example:
+{{{
+parameters {
+  system = "5"
+  units = "2,6"
+  fade = "true"
+}
+}}}
+
+=== kangtai ===
+Only TellStick Net compatible. TellStick Net can only send, not receive this protocol[[BR]]
+Known brands:
+ * Clas Ohlson, 36-8836
+
+=== risingsun ===
+TellStick Duo and TellStick Net can only send, not receive this protocol[[BR]]
+Often small codeswitch receivers. Known brands:
+ * Conrad (selflearning)
+ * Clas Ohlson (codeswitch)
+ * GAO (codeswitch)
+ * Kjell & Company (codeswitch)
+ * Otio (selflearning)
+
+Two models, codeswitch or selflearning:
+  codeswitch::
+    Uses {{{house}}} (1 to 4) and {{{unit}}} (1 to 4). Example:
+    {{{
+parameters {
+  house = "1"
+  unit = "1"
+}
+    }}}
+
+  selflearning::
+    Uses {{{house}}} (1 to 33554432) and {{{unit}}} (1 to 16). Example:
+    {{{
+parameters {
+  house = "5679"
+  unit = "1"
+}
+    }}}
+
+=== sartano ===
+This is a very common protocol used by a lot of receivers. It has 10 dip-switches to configure the adress-code.
+Brands:
+ * Sartano
+ * Alpha
+ * Brennenstuhl
+ * Elro
+
+It uses the parameter {{{code}}} and consists of ten ones and zeros. Example:
+{{{
+parameters {
+  code = "0010010100"
+}
+}}}
+
+=== silvanchip ===
+TellStick Duo and TellStick Net can only send, not receive this protocol[[BR]]
+Brands:
+ * Ecosavers
+ * KingPin - KP100
+
+Two models, ecosavers and kp100
+  ecosavers::
+    Uses {{{house}}} (1 to 1048575) and {{{unit}}} (1 to 4). Example:
+    {{{
+parameters {
+  house = "1"
+  unit = "1"
+}
+    }}}
+
+  kp100::
+    Uses {{{house}}} (1 to 1048575). Example:
+    {{{
+parameters {
+ house = "1"
+}
+    }}}
+
+=== upm ===
+TellStick Duo and TellStick Net can only send, not receive this protocol[[BR]]
+Uses parameters {{{house}}} (0 to 4095) and {{{code}}} (1 to 4). Each receiver can only remember one code at a time so using both a normal remote and TellStick is not possible. Example:
+{{{
+parameters {
+  house = "123"
+  unit = "1"
+}
+}}}
+
+=== waveman ===
+Very similar to arctech/codeswitch but the protocol differs just slightly. Brands:
+ * Waveman
+Example:
+{{{
+parameters {
+  house = "A"
+  unit = "1"
+}
+}}}
+
+=== x10 ===
+Requires TellStick batch >= 9, TellStick Duo or TellStick Net[[BR]]
+
+This protocol uses the same configuration as arctech/codeswitch. Example:
+{{{
+parameters {
+  house = "A"
+  unit = "1"
+}
+}}}
+
+=== yidong ===
+Added to telldus-core in 2.0.4.
+ 
+Brands:
+ * Goobay
+
+Uses {{{unit}}} (1 to 4). Example:
+{{{
+parameters {
+  unit = "1"
+}
+}}}

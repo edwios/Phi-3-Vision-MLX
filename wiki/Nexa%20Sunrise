@@ -1,0 +1,36 @@
+= Nexa Sunrise =
+
+== Download ==
+
+[http://download.telldus.se/TellStick/Software/NexaSunRise/Nexa_Release_03.11.2007.zip Nexa_Release_03.11.2007.zip]
+
+
+== Description ==
+
+As implied by its name, Nexa Sunrise controls the receivers of Nexa with regard to the movements of the sun. For example outdoor lighting can be automatically switched on in the afternoon when it gets dark outside and to switch the lights off at a certain time say 11 pm in weekdays and 1 am in weekends. Another example is to let outdoor lighting turn on at a specific time in the morning and turn off when it is light enough outdoors. There are also possible applications with indoors lighting. For example, lamps in windows can be switched on and off when the sun goes down and up. To compensate for the face that it gets darker indoors faster than outdoors, it is possible to configure a so called offset factor.
+
+This is what Nexa Sunrise can do with the functions it supports:
+
+  * Geographic position (latitude/longitude for the object that is to be controlled)
+  * Start-up with navigation to a web page for simple monitoring of your position
+  * Automatic calculation of the times when the sun rises and sets on the current date
+  * Automatic adjustment for summer / winter time
+  * Automatic adjustment for public holidays (fixed and variable)
+  * Logging of committed commands (on and off)
+  * Time schedules on and off commands
+  * Individual settings for each group and for the days of the week
+    * Time when morning lighting is switched on
+    * Time when evening lighting is switched off
+    * Time when night lighting is switched off
+
+
+Another function has been added for monitoring incoming Skype calls. Often you may not be available by the computer which is why a reminder of someone trying to reach you could be helpful.
+
+== Links ==
+
+[http://www.minhembio.com/ Minhembio.com]
+
+
+== Thanks to ==
+
+  * Walter Krämbring 

@@ -1,0 +1,23 @@
+== How to restore a bricked TellStick Net ==
+Did something happen during a firmware upgrade of your TellStick Net? And now it won't start again?[[BR]]
+Don't worry! You can probably restore it again yourself.
+
+If something goes wrong while upgrading the firmware in the TellStick Net, it will automatically reset itself to ip address 192.168.97.60 and listen for a new software. All you need to do is to join the same network on your computer and upload the firmware using tftp. Please read below for your operating system.
+
+The latest firmware can be downloaded here: http://download.telldus.com/TellStick/Software/firmware/tellstick_net_fw17.hex
+
+Cycle the power to the TellStick Net and make sure the green led on the network connector flashes in groups of seven blinks. If it does it is now in recovery mode and is ready for a new firmware.
+
+[[BR]][[BR]]
+=== Mac OS X ===
+Change the ip-address of your mac: open {{{System preferences...}}} > {{{Network}}}[[BR]]
+Change {{{Configure IPv4}}} to "Manually" and enter IP address {{{192.168.97.61}}} and the subnet mask {{{255.255.255.0}}}.[[BR]]
+Click "Apply"[[BR]]
+[[BR]]
+Open a terminal and type tftp -e 192.168.97.60[[BR]]
+{{{
+rexmt 1
+timeout 60
+put [PATH]/tellstick_net_fw3.hex
+}}}
+wait for the upload to complete, close tftp with the "quit" command, reset the ip configuration of the mac.

@@ -1,0 +1,29 @@
+= MediaPortal =
+
+== Download ==
+
+An old version is available at [http://download.telldus.se/TellStick/Software/Plugins/MediaPortal/Install.exe http://download.telldus.se/TellStick/Software/Plugins/MediaPortal/Install.exe]
+
+A newer version is available at the home page of MediaPortal [http://www.team-mediaportal.com/files/Download/MediaPortalInstaller(MPI)/Automation/TellstickPause http://www.team-mediaportal.com/files/Download/MediaPortalInstaller(MPI)/Automation/TellstickPause]
+
+== Source code ==
+
+[http://download.telldus.se/TellStick/Software/Plugins/MediaPortal/mediaportal-plugin-132.zip mediaportal-plugin-132.zip]
+
+
+== Description ==
+
+With this plugin you can control TellStick via MediaPortal.
+
+With the new version you can not only turn on and off through GUI but also for example turn the light off when you start a movie and turn the light off again when the movie ends.
+
+The forum is available at [http://forum.team-mediaportal.com/plugins-47/tellstick-pause-plugin-38400 http://forum.team-mediaportal.com/plugins-47/tellstick-pause-plugin-38400]
+
+
+== Installation ==
+
+  * Follow the guide in the installation software
+
+== Screenshot ==
+
+[[Image(MediaPortal_plugin.jpg)]]

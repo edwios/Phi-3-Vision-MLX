@@ -1,0 +1,59 @@
+= Guide - Scheduling with the Windows XP scheduler =
+
+'''1. Run Scheduled Events which is found in the control panel.'''
+
+[[Image(Scheduled_tasks_1.png)]]
+
+'''2. Choose the option to add a scheduled event and click next.'''
+
+[[Image(Scheduled_tasks_2.png)]]
+
+'''3. Click "Browse".'''
+
+[[Image(Scheduled_tasks_3.png)]]
+
+'''4. Browse the folder where Telldus software is installed. Click tdtool.exe and "Open".'''
+
+[[Image(Scheduled_tasks_4.png)]]
+
+'''5. Write a name for the event.'''
+
+'''6. Choose how often you want the event to take place.'''
+
+[[Image(Scheduled_tasks_5.png)]]
+
+'''7. Choose at what time the event is to be executed.'''
+
+[[Image(Scheduled_tasks_6.png)]]
+
+'''8. Enter the user name and password of the Windows login and click next to confirm the scheduled event.'''
+
+[[Image(Scheduled_tasks_7.png)]]
+
+'''9. Check the box to open advanced properties. Click finish.'''
+
+[[Image(Scheduled_tasks_8.png)]]
+
+[[Image(Scheduled_tasks_9.png)]]
+
+'''10. Click "Start" and "Run"'''
+
+'''11. Enter "cmd" and press "OK".'''
+
+'''12. Enter "c:\program\telldus" and press "Enter".''' (Please note that the exact browse line may differ depending on where the Telldus software has been installed)
+
+'''13. Enter "tdtool --list" and press "Enter".'''
+
+[[Image(Scheduled_tasks_10.png)]]
+
+'''14. Note the number of the unit you want to schedule. In this case 1.'''
+
+'''15. Close the cmd window and return to the scheduled event properties.'''
+
+'''16. In the field "Run", add " --on" if you want the scheduler to switch the unit on and " --off" if you want the scheduler to switch the unit off, followed by the unit you want to control.'''
+
+[[Image(Scheduled_tasks_11.png)]]
+
+'''17. Now scheduled events should look like this.'''
+
+[[Image(Scheduled_tasks_12.png)]]

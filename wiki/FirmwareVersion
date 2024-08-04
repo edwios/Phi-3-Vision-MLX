@@ -1,0 +1,179 @@
+= Current Firmware Versions =
+[[br]]
+|||| Product || Version
+|||| TellStick  || 6
+|||| TellStick Duo || 12
+|||| TellStick Net || 17
+|||| TellStick Net v2 || 1.3.3
+|||| TellStick ZNet Lite || 1.3.3
+|||| TellStick ZNet Lite v2 || 1.3.3
+
+[[br]][[br]]
+= Changelogs =
+
+== TellStick ZNet Lite v1 & v2, TellStick Net v2 ==
+''Changes in version 1.3.3 (being rolled out now)''[[BR]]
+
+Bugfixes:
+* Tighter control over plugin names. Names are now restricted to only alphanumeric characters, space and hyphen.
+* Fixed a bug in plugin configuration value handling that prevented the field from being corrected.
+* Fixed a bug in plugin configuration value that led to unusable min and max values.
+
+''Changes in version 1.3.2''[[BR]]
+
+Bugfixes:
+* It's now possible to add a group from the API (not only the web interface)
+* "Last updated" may now be included from a sensor API call ("info" and "list")
+* Battery level is now included in sensor info API call, if any
+* Allow Lifx plugin correctly through the firewall
+* Allow UPnP correctly through the firewall
+* Allow local API requests to be sent using "POST"
+* Fixed: Handle DST changes for time triggers
+* Fixed: Suntime triggers that didn't work after a period of midnight sun or polar night
+* Fixed: Suntime condition. Make sure the sun is considered "up" in conditions even if the sun sets and rises again in the same day (before 00:00 UTC)
+* Fixed: Failures in Device history. Sometimes failed commands where not included in the device history (for example when not being able to run a schedule after several attempts), and in other cases fails could be listed as success in the device history, and in yet other cases the origin of a command was incorrect on failed commands
+* Fixed: In some circumstance sensors where not set as ignored in user interface, even if they where actually ignored
+* Fixed: Blockheater was not always calculated correctly on the first day of the month
+* Fixed: Multiple entries in device history when controlling TZWP102
+* Lots of thermostat fixes, including:
+    - Correct handling of sending commands to non-listening thermostats (thermostats with batteries)
+    - Better messages in device history when changing mode or temperature
+    - Fix problem when including thermostat as secure
+    - Handle negative temperatures
+    - Correct and consistent handling of thermostat reports
+    - Wait for a report back from the thermostat, before updating status/temperature in the user interface
+    - Don't change "mode" in a command if not explicitly asked to
+
+Known issues:
+* Some types of failed device state changes will be logged twice in the device history until after a server upgrade
+
+''Changes in version 1.3.1''[[BR]]
+
+Bugfixes:
+* Thermostat fixes
+* Allow Shelly-plugin through firewall
+
+''Changes in version 1.3.0 (beta)''[[BR]]
+
+New features:
+* Thermostat support
+* Sensor type Power, intended to eventually replace Watt
+
+''Changes in version 1.2.0''[[BR]]
+
+New features:
+* New sensor types: CO, CO2, PM2.5, Loudness, Volume, Weight and Moisture
+* New power types Ampere and Volt
+* URL-actions (in events) now support https
+* Firmware is ready for Rooms! (more information will follow)
+* Firmware is ready for Modes! (more information will follow)
+* Hostname and vendorid added to dhcp request
+* Add support for Z-Wave rain sensors
+* Add support for sending Z-Wave meter reset commands
+
+Bugfixes:
+* Time conditions after 00:00 were not always evaluated correctly
+* Nexa codeswitch bell did not work correctly
+* Too big messages between TellStick and servers were not sent correctly, could affect for example device synchronization lists
+* Sensors reporting more than one type of value at the same time did not always send latest timestamp/value for all values (might diff 5 minutes)
+* Blockheater event had many minor bugs
+* When TellStick switched server, history about whether a trigger has triggered or not was lost, so a trigger might trigger again
+* Devices are now listed in the parameters of a group
+* Changing of RGB values possible also from local API
+* Try to resync time again if no network was available at boot time
+* Lots of other small bugfixes
+
+''Changes in version 1.1.1''[[BR]]
+* Fix bug where it was not possible to change device names
+* Fix bug where TellStick showed red light altough it was online
+* Bugfix in protocol UPM. No data was transmitted.
+
+''Changes in version 1.1.0''[[BR]]
+* Security update
+* Add support for device types
+* Add support for local control from the app
+* Bugfix where the dim value was lost after a name of a device was changed.
+* Bugfix, state change within one second was not acknowledged properly
+* Return sensor values as float in local API
+* Add option to enable beta firmware
+
+''Changes in version 1.0.15''[[BR]]
+* Security updates
+* Bugfix where the dim value was lost after a name of a device was changed.
+
+''Changes in version 1.0.14''[[BR]]
+* Better handling of Z-Wave-associations
+* Return sensor values as float in local API
+* Bugfix, state change within one second was not acknowledged properly
+
+''Changes in version 1.0.12''[[BR]]
+* Add support for rf433 protocol Upm
+* Bugfix for delays in events where not stopped properly when switching servers
+* Bugfix for non-ascii characters in URLs in events
+* Bugfix: Nexa selflearning bell did not work after scanning
+* Bugfix for offset in suntime conditions
+* Add support for receiving protocol Sartano
+* Added battery report for 433 MHz sensors, where available
+* Automatic cleanup of 433 MHz sensors that haven't received any signals for a while
+
+''Changes in version 1.0.11''[[BR]]
+* Allow lua functions to be called from the local api
+* Bugfix for large data transfers over SSL
+
+''Changes in version 1.0.10''[[BR]]
+* Bugfix for handling a corrupt settings file
+* Bugfix when large messages are received from Telldus Live!
+
+''Changes in version 1.0.9''[[BR]]
+* Add support for rf433 protocol SilvanChip (Kingpin, Ecosavers)
+* Add support for rf433 protocol Brateck (Roxcore)
+* Add support for rf433 protocol Ikea
+* Add support for Kangtai selflearning
+* Allow raw 433 data be processed by Lua code
+* Add support for passing username and password in url actions
+* New local webinterface based on React
+
+''Changes in version 1.0.8''[[BR]]
+* Include local API (beta)
+* Retry events if a device action failes.
+* Z-Wave: Ignore bogus sensor values that a device does not support.
+* Z-Wave: Support Aeon Labs Smart Switch 6
+* Bugfix where the time might not be set correctly if no internet was available on boot
+* Various bugfixes
+
+''Changes in version 1.0.7''[[BR]]
+* Bugfix, negative values where reported as 4 billion degrees.
+* Add support for rf433 protocol Waveman
+* Add support for thermostats
+* Fix for Qubino devices that stops inclusion at 26%
+
+''Changes in version 1.0.6''[[BR]]
+* Add support for rf433 protocol Kangtai (Cotech and Clas Ohlson)
+* Add support for rf433 protocol Yidong (Biltema and Goobay)
+* Bug fix: Fix for dimmers in scheduled jobs
+* Fix bug when sending multiple rf433 commands quickly after each other
+* Add support for groups
+* Fix for not setting the dimmer value in the device state and device
+* Add rf433 protocol Sartano
+* Fix for scheduler bug rerunning a job between midnight and UTC midnight
+* Fix bug to not end up offline if an error occurs while talking to the server
+* Bugfix for reporting dim values correctly for Z-Wave devices.
+
+== TellStick Net ==
+''Changes since last stable version (version 4)''[[BR]]
+* Support for some Oregon Scientific version 3 sensors
+* Can receive Hasta protocol, version 1 and 2
+* Checksum validation for Fineoffset (less false temperature readings)
+* Fix where some motion sensors/magnetic switches reported different codes for on and off
+* Improved the way the Oregon Scentific protocol is received
+* More precise server assignment logic allows for a TellStick Net to be placed on a certain server, which may be useful for beta testers
+* DHCP assignment fixes
+* Some minor bug fixes
+
+== TellStick Duo ==
+''Changes since last stable version (version 5)''[[BR]]
+* Support for some Oregon Scientific version 3 sensors
+* Can receive Hasta protocol, version 1 and 2
+* Checksum validation for Fineoffset (less false temperature readings)
+* Fix where some motion sensors/magnetic switches reported different codes for on and off
+* Better Oregon Scientific reception

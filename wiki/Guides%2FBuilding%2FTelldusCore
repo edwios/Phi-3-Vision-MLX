@@ -1,0 +1,26 @@
+This guide describes how to build TelldusCore from source. This guide is only if you want to help out and develop new functions in TelldusCore.
+
+''This guide is only a stub, please help us by expanding it.''
+
+== Mac OS X ==
+In order to build the software under OS X some softwares is required. You need at least the following:
+
+Xcode.
+ Download this from http://developer.apple.com or the Mac App Store
+[http://www.cmake.org/cmake/resources/software.html CMake]
+
+[http://www.ftdichip.com/Drivers/D2XX.htm libfd2xx]
+
+== Getting the code ==
+
+Get the latest source code from Telldus using git:
+{{{
+#!sh
+git clone https://github.com/telldus/telldus.git
+}}}
+
+Go to the telldus-core directory
+{{{
+#!sh
+cd telldus/telldus-core
+}}}

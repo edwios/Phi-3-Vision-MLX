@@ -1,0 +1,122 @@
+== TellStick installation - Linux ==
+
+The Linux installation of TellStick requires kernel version 2.6.14 or later. You will also need support for the driver  {{{ftdi_sio}}}.
+
+To find out which version of the kernel you are running, use this command:
+{{{
+#!sh
+uname -r
+}}}
+
+=== Prerequisites ===
+In order to build the software under Linux some softwares is required. You need at least the following:
+
+gcc (compiler) and a working toolchain.
+ On debian systems, this can be installed by installing the package {{{build-essential}}}
+libftdi (and the corresponding development package)
+ Called {{{libftdi1}}} and {{{libftdi-dev}}} on debian
+libconfuse (and the corresponding development package)
+ Called {{{libconfuse0}}} and {{{libconfuse-dev}}} on debian
+cmake
+
+=== Using kernel 2.6.21 or later ===
+
+If you are using kernel version later than 2.6.21 you need to make sure the kernel module ftdio_sio is not loaded in the kernel.
+
+Check if the module is loaded into the kernel by:
+{{{
+#!sh
+lsmod | grep ftdi_sio
+}}}
+
+If it is loaded, unload with:
+{{{
+#!sh
+modprobe -r ftdi_sio
+}}}
+
+=== Installing the software ===
+
+Download the latest source code from Telldus at:
+[http://download.telldus.com/TellStick/Software/telldus-core/telldus-core-2.1.2.tar.gz] (beta here: [http://download.telldus.com/pool/main/t/telldus-core/telldus-core_2.1.3-beta1.orig.tar.gz] )
+
+Unpack it:
+{{{
+#!sh
+cd /usr/src
+gunzip telldus-core-{version}.tar.gz #Change {version} to the downloaded version
+tar xvf telldus-core-{version}.tar
+}}}
+
+This creates the directory /usr/src/telldus-core-{version} containing the files
+from the archive. We only support the GNU version of tar archiving utility. Note
+on some systems it is called gtar.
+
+Go to the new directory
+{{{
+#!sh
+cd telldus-core
+}}}
+
+==== Configuring ====
+
+Telldus Core is built using CMake (http://www.cmake.org), version 2.6.0 is the
+minimum required version. This means there is no configure-script, but you
+need to run cmake.
+
+To configure telldus-core for your machine type:
+{{{
+#!sh
+cmake .
+}}}
+in the package directory.
+
+By default, Telldus Core is configured for installation in the /usr/local
+directory, but this can be changed by using the -DCMAKE_INSTALL_PREFIX=/usr
+option. Alternatively, the DESTDIR="/opt" option can be used to specify a "local"
+installation within the source directory when running "make install".
+
+==== Building ====
+To create the library and compile all the tools type:
+
+{{{
+#!sh
+make
+}}}
+
+If you did not configure Telldus Core using the -DCMAKE_INSTALL_PREFIX=/usr
+option, you need to install the library and tools in the appropriate place. To
+do this, type:
+
+{{{
+#!sh
+su -c "make install"
+}}}
+
+and enter the root password.
+
+If you want to install in another directory, type:
+
+{{{
+#!sh
+su -c "make DESTDIR=/opt install"
+}}}
+
+Note that on some systems the make utility is named differently, e.g. {{{gmake}}}.
+
+On some systems the cache for libraries need to be updated, type:
+{{{
+#!sh
+su -c "ldconfig"
+}}}
+
+=== Configuring the receivers === 
+
+After the compilation is done, go on and [wiki:TellStick_conf "configure"] the receivers, or install TelldusCenter to configure them in an graphical environment. 
+
+== Installing TelldusCenter ==
+
+Download source for TelldusCenter (graphical management and control of devices) here:
+[http://download.telldus.com/TellStick/Software/telldus-gui/telldus-gui-2.1.2.tar.gz]
+
+''TelldusCenter installation guide needed''

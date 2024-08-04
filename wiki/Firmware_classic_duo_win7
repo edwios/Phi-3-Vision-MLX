@@ -1,0 +1,22 @@
+== How to update the firmware in TellStick and TellStick Duo using Windows 7 ==
+
+The service running must be stopped in order for the flasher utility to see the TellStick.[[BR]]
+ 1. Open the control panel from the start menu[[BR]][[Image(ctrlpan.PNG, nolink)]][[BR]][[BR]]
+ 1. Select "System and Security" and then "Administrative tools"[[BR]][[Image(sysandsecurity.PNG, nolink)]][[Image(admtool.PNG, nolink)]][[BR]][[BR]]
+ 1. Double click "Services" in the new window[[BR]][[Image(services.PNG, nolink)]][[BR]][[BR]]
+ 1. Scroll down to "Telldus Service", right click it and click "Stop"[[BR]][[Image(stopservice.PNG, nolink)]]
+
+You can now run the flasher utility, TellStickFlasher.exe ([http://download.telldus.com/TellStick/Software/TellStickNetFlasher/TellStickNetFlasher.zip]), from the TelldusCenter installation directory.
+
+Click TellStick and TellStick Duo.
+[[BR]][[Image(introduction.png, nolink)]][[BR]][[BR]]
+Make sure the Telldus service is stopped and click OK.
+[[BR]][[Image(popup.png, nolink)]][[BR]][[BR]]
+Click on the device you would like to update.
+[[BR]][[Image(choose.png, nolink)]][[BR]][[BR]]
+The firmware is now uploading to the device. 
+[[BR]][[Image(uploading.png, nolink)]][[BR]][[BR]]
+Finished.
+[[BR]][[Image(finished.png, nolink)]][[BR]][[BR]]
+
+[[Include(Firmware_duo_faq)]]

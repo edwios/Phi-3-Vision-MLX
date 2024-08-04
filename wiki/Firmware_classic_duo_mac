@@ -1,0 +1,12 @@
+== How to update the firmware in TellStick and TellStick Duo using Mac OS X ==
+
+Open the terminal.
+Run the following command:
+{{{
+sudo launchctl unload /Library/LaunchDaemons/com.telldus.service.plist
+}}}
+You need to enter your password.
+
+Now you can run the flasher utility, which can be downloaded here:[[BR]][http://download.telldus.com/TellStick/Software/TellStickNetFlasher/TellStickNetFlasher.dmg] (yes, despite its name it works for TellStick and TellStick Duo too)
+[[BR]][[BR]]
+[[Include(Firmware_duo_faq)]]

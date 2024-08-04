@@ -1,0 +1,24 @@
+'''TellStick ZNet Lite v2 - LED 1 - Power'''
+|| ''Pattern'' || ''Description'' || ''Details'' ||
+|| Flashing green || Booting || Device is starting up. Do not remove the power! ||
+|| Steady green || Operating system up and running ||  ||
+
+
+'''TellStick ZNet Lite v2 - LED 2 - Live Status'''
+|| ''Pattern'' || ''Description'' || ''Details'' ||
+|| Steady green || Connected to Telldus Live! || Normal operation ||
+|| Flashing green || Waiting to be activated ||  ||
+|| Steady red || Not able to connect to Telldus Live! ||  ||
+|| Flashing red || Waiting for IP || Trying to acquire an IP via DHCP ||
+
+'''TellStick ZNet Lite v2 - LED 3 - 433 MHz Tranceiver'''
+|| ''Pattern'' || ''Description'' ||
+|| Flashing blue || Data received 433 MHz ||
+|| Flashing red || Data transmitted 433 MHz ||
+|| Not lit || Normal operation ||
+
+[[BR]][[BR]]
+'''TellStick ZNet Lite v2 - Network port'''
+|| ''Pattern'' || ''Description'' ||
+|| Flashing green || Data ||
+|| Steady yellow || Link ||

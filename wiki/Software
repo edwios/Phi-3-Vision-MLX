@@ -1,0 +1,36 @@
+== This list is outdated, please see [http://telldus.com/thirdparty/index] instead! ==
+[[BR]]
+
+= Software =
+
+|| '''User software''' || [[Image(os_logo_win.png, 40px, 40px)]] || [[Image(os_logo_mac.png, 40px, 40px)]] || [[Image(os_logo_linux.png, 40px, 40px)]] ||
+
+|| [http://www.telldus.se/download/latest/win TellStick installation - Windows] || [[Image(green_check.png)]] || [[Image(red_check.png)]] || [[Image(red_check.png)]] ||
+|| [http://www.telldus.se/download/latest/mac TellStick installation - Mac] || [[Image(red_check.png)]] || [[Image(green_check.png)]] || [[Image(red_check.png)]] ||
+|| [wiki:TellStick_installation_Linux "TellStick installation - Linux"] || [[Image(red_check.png)]] || [[Image(red_check.png)]] || [[Image(green_check.png)]] ||
+|| [wiki:"Nexa Sunrise"] - A software that controls receivers with regard to sunrise and sundown || [[Image(green_check.png)]] || [[Image(red_check.png)]] || [[Image(red_check.png)]] ||
+|| NexaHome - Life made easy with home automation || [[Image(green_check.png)]] || || [[Image(green_check.png)]] ||
+|| [http://www.switchking.se/ Switch King Pro] || [[Image(green_check.png)]] || [[Image(red_check.png)]] || [[Image(red_check.png)]] ||
+|| [wiki:tellstickController] - Compact perl program/daemon that control devices using rule based configuration || [[Image(red_check.png)]] || [[Image(red_check.png)]] || [[Image(green_check.png)]] ||
+|| [wiki:tellstickd] || [[Image(red_check.png)]] || [[Image(red_check.png)]] || [[Image(green_check.png)]] ||
+|| [wiki:Ulterius] || [[Image(red_check.png)]] || [[Image(green_check.png)]] || [[Image(red_check.png)]] ||
+|| [wiki:Webstick] - A simple web server || [[Image(green_check.png)]] || [[Image(red_check.png)]] || [[Image(red_check.png)]] ||
+
+|| '''Plugins''' || [[Image(os_logo_win.png, 40px, 40px)]] || [[Image(os_logo_mac.png, 40px, 40px)]] || [[Image(os_logo_linux.png, 40px, 40px)]] ||
+
+|| EventGhost - General application management software || [[Image(green_check.png)]] || [[Image(red_check.png)]] || [[Image(red_check.png)]] ||
+|| MediaPortal - Media Center plugin  || [[Image(green_check.png)]] || [[Image(red_check.png)]] || [[Image(red_check.png)]] ||
+|| [wiki:"Salling Clicker"] - Mobile phone control || [[Image(green_check.png)]] || || [[Image(red_check.png)]] ||
+
+|| '''Developer software''' || [[Image(os_logo_win.png, 40px, 40px)]] || [[Image(os_logo_mac.png, 40px, 40px)]] || [[Image(os_logo_linux.png, 40px, 40px)]] ||
+
+|| [wiki:".NET"] - .NET wrapper || [[Image(green_check.png)]] || [[Image(red_check.png)]] || [[Image(red_check.png)]] ||
+|| [doxygen:telldus_core.html C/C++] || [[Image(green_check.png)]] || [[Image(green_check.png)]] || [[Image(green_check.png)]] ||
+|| [wiki:Java] || || || [[Image(green_check.png)]] ||
+|| [wiki:"Visual Basic"] || [[Image(green_check.png)]] || [[Image(red_check.png)]] || [[Image(red_check.png)]] ||
+
+
+[[Image(green_check.png)]] = compatible [[BR]]
+[[Image(red_check.png)]] = not compatible [[BR]]
+
+Empty = possible to make compatible

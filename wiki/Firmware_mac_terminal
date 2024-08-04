@@ -1,0 +1,25 @@
+== How to update the firmware in TellStick Net using Mac using the terminal ==
+
+First you need to find out the IP-number of your TellStick Net, the easiest way is to check the list of attached devices in your router. [[BR]]
+You can find the MAC-adress on the label at the bottom side of TellStick Net (it should start with AC:CA:54). When you've found this MAC-adress in the router, note the IP-number.
+[[BR]][[Image(dhcp.png, nolink)]][[BR]][[BR]]
+
+Download the latest firmware file here: [[BR]]
+http://download.telldus.com/TellStick/Software/firmware/tellstick_net_fw17.hex [[BR]]
+Download the file named "tellstick_net_fw<version>.hex" with the highest version number.[[BR]]
+Right click the file and select Download Linked File As...[[BR]]
+Select your home folder as destination folder. [[BR]][[BR]]
+[[BR]][[Image(download.png, nolink)]][[BR]][[BR]]
+
+Open a terminal and type "tftp -e <tellstick-net-ip-number-here>"[[BR]]
+{{{
+rexmt 1
+timeout 60
+put [PATH]/tellstick_net_fw17.hex
+}}}
+Please wait for the upload to complete.[[BR]][[BR]]
+Close tftp with the "quit" command.
+
+[[BR]][[Image(tftp.png, nolink)]][[BR]][[BR]]
+
+[[Include(Firmware_faq)]]

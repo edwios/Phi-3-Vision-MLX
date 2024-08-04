@@ -1,0 +1,33 @@
+== How to restore a bricked TellStick Net ==
+Did something happen during a firmware upgrade of your TellStick Net? And now it won't start again?[[BR]]
+Don't worry! You can probably restore it again yourself.
+
+If something goes wrong while upgrading the firmware in the TellStick Net, it will automatically reset itself to ip address 192.168.97.60 and listen for a new software. All you need to do is to join the same network on your computer and upload the firmware using tftp. Please read below for your operating system.
+
+The latest firmware can be downloaded here: http://download.telldus.com/TellStick/Software/firmware/tellstick_net_fw17.hex
+
+Cycle the power to the TellStick Net and make sure the green led on the network connector flashes in groups of seven blinks. If it does it is now in recovery mode and is ready for a new firmware.
+
+[[BR]][[BR]]
+=== Windows 7 ===
+
+tftp is not activated by default in Windows 7. It is easily installed though. Open {{{Control Panel}}} > {{{Programs and Features}}} > click {{{Turn Windows features on or off}}} in left side > enable {{{TFTP Client}}} then click in {{{OK}}}.
+
+Next, the computer must exist on the same subnet as TellStick Net. To do this we need to change the computers ip-address. Open {{{Control Panel}}} > {{{Network and Internet}}} > {{{Network and Sharing Center}}} > click {{{Change adapter settings}}} in the left side.[[BR]]
+Right click on the network adapter that you are using and choose {{{Properties}}}.
+
+Select {{{Internet Protocol Version 4 (TCP/IPv4)}}} and click {{{Properties}}}.[[BR]]
+[[Image(network_adapter.png, nolink)]]
+
+Select {{{Use the following IP address}}} and enter the IP address {{{192.168.97.61}}} and the subnet mask {{{255.255.255.0}}}.[[BR]]
+[[Image(ip_address_w7.png, nolink)]][[BR]]
+
+Click {{{OK}}} and then {{{Close}}} on the previous dialog to close them and set the new address.
+
+Open a terminal: {{{Start}}} > {{{Search programs and files}}} > {{{cmd}}}[[BR]]
+Type: {{{tftp 192.168.97.60 PUT C:\Users\Micke\Desktop\tellstick_net_fwXX.hex}}} Do not press enter.[[BR]]
+(Replace "C:\Users\Micke\Desktop\tellstick_net_fwXX.hex" to your path to the downloaded firmware.)[[BR]]
+Toggle the power to the TellStick Net and within 4 seconds execute the command by pressing enter.[[BR]]
+[[Image(tftp_w7.png, nolink)]]
+
+'''Remember to restore the previous settings in {{{Internet Protocol Version 4 (TCP/IPv4)}}} or you won't get Internet access.'''

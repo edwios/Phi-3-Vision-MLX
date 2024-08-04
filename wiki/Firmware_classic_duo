@@ -1,0 +1,12 @@
+== How to update the firmware in TellStick and TellStick Duo ==
+
+TellStick must be from batch 11 or later to support upgrades. [[BR]]
+All batches of TellStick Duo support upgrades. [[BR]]
+[[BR]]
+
+Choose your operating system below:
+|| [[Firmware_classic_duo_winxp|Windows XP]] || [[Firmware_classic_duo_win7|Windows 7]] || [[Firmware_classic_duo_mac|Mac OS X]] ||
+|| [[Image(win.png, align=center, link=wiki:Firmware_classic_duo_winxp)]] || [[Image(win.png, align=center, link=wiki:Firmware_classic_duo_win7)]] || [[Image(mac.png, align=center, link=wiki:Firmware_classic_duo_mac)]] ||
+
+
+[[Include(Firmware_duo_faq)]]

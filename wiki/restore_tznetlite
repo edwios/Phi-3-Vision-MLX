@@ -1,0 +1,8 @@
+Open a web browser and navigate to http://192.168.97.60/ [[BR]][[Br]]
+[[Image(firmware_update.png, nolink)]][[BR]]
+
+[[BR]] Click "Browse..." and select the .bin file you downloaded earlier.[[BR]]
+Click "Update firmware".[[BR]][[BR]]
+
+The firmware will now upgrade and the device will reboot, it might take a couple of minutes. [[BR]]
+Note: The web browser will not tell when the upgrade is finished, so just close the browser. 

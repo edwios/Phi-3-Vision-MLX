@@ -1,0 +1,18 @@
+== How to update the firmware in TellStick Net using Linux ==
+
+The windows version of the TellStickNetFlasher-utility run well in Wine. If you experience any problem running the TellStickNetFlasher-utility, you can follow this guide instead:[[BR]][[BR]]
+
+First you need to find out the IP-number of your TellStick Net, the easiest way is to check the list of attached devices in your router. 
+
+The latest firmware can be downloaded here: http://download.telldus.com/TellStick/Software/firmware/tellstick_net_fw17.hex
+
+Open a terminal and type tftp <tellstick-net-ip-number-here>[[BR]]
+{{{
+rexmt 1
+timeout 60
+put [PATH]/tellstick_net_fw17.hex
+}}}
+Please wait for the upload to complete.[[BR]][[BR]]
+Close tftp with the "quit" command.
+
+[[Include(Firmware_faq)]]

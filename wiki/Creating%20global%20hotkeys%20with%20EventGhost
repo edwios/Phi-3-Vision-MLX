@@ -1,0 +1,41 @@
+= Guide - Creating global hotkeys with EventGhost =
+
+In order for this guide to be useful the following softwares are needed:
+  * EventGhost
+  * [wiki:"EventGhost plugin"]
+
+---
+
+== Procedure ==
+
+'''1. Start EventGhost.'''
+
+[[Image(Hotkey1.png)]]
+
+'''2. Add plugin, click "Keyboard" under "Remote receiver".'''
+
+'''3. Add plugin, click "TellStick" under "External Haedware Control".'''
+
+[[Image(Hotkey1b.png)]]
+
+'''4. Create a new macro ("Add macro"), choose an event, for example TellStick - turn on.'''
+
+[[Image(Hotkey2.png)]]
+
+'''5. Choose which unit to control.'''
+
+[[Image(Hotkey3.png)]]
+
+'''6. Uncheck "Log only assigned and activated events".'''
+
+[[Image(Hotkey4.png)]]
+
+'''5. Press the button combination you want to connect to the macro.'''
+
+[[Image(Hotkey5.png)]]
+
+'''5. Pull the button combination from the log-window to the left to the macro.'''
+
+[[Image(Hotkey6.png)]]
+
+'''6. Test the macro by pressing the button combination.'''

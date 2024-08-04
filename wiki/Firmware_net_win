@@ -1,0 +1,16 @@
+== How to update the firmware in TellStick Net using Windows XP ==
+The flasher software runs on later Windows versions as well, it might look a little different though.[[BR]]
+
+Download and run the TellStickNetFlasher-utility.[[BR]]
+[http://download.telldus.com/TellStick/Software/TellStickNetFlasher/TellStickNetFlasher.zip]
+[[BR]][[BR]][[BR]]
+Click TellStick Net
+[[BR]][[Image(introduction.png, nolink)]][[BR]][[BR]]
+Click on the device you would like to update.
+[[BR]][[Image(choose.png, nolink)]][[BR]][[BR]]
+The firmware is now uploading to the device. 
+[[BR]][[Image(uploading.png, nolink)]][[BR]][[BR]]
+Finished.
+[[BR]][[Image(conclusion.png, nolink)]][[BR]][[BR]]
+
+[[Include(Firmware_faq)]]

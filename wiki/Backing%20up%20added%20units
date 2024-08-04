@@ -1,0 +1,30 @@
+= Guide - Backing up added units =
+
+'''1. Start the register editor by clicking Start - Run. Then type "regedit" and click "OK".'''
+
+[[Image(Regedit1.png, nolink)]]
+
+'''2. Find out if your devices are saved for just your user or for any user on your computer:'''[[BR]]
+Browse "My Computer\HKEY_LOCAL_MACHINE\SOFTWARE\Telldus\Devices" ("HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Telldus\Devices" on 64 bit Windows 7/8).[[BR]]
+Check for SharedDevices and note the value.[[BR]]
+If the value is 0x00000000 (0) then your devices are saved for just your user - Browse "My Computer\HKEY_CURRENT_USER\SOFTWARE\Telldus".[[BR]]
+If the value is 0x00000001 (1) then your devices are saved for any user - Browse "My Computer\HKEY_LOCAL_MACHINE\SOFTWARE\Telldus" ("HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Telldus\Devices" on 64 bit Windows 7/8).[[BR]]
+
+
+[[Image(Regedit2.png, nolink)]]
+
+'''3. Click File - Export.
+
+[[Image(Regedit3.png, nolink)]]
+
+'''4. Choose where you want to save your backup and choose a file name, then click save.'''
+
+[[Image(Regedit4.png, nolink)]]
+
+----
+
+== Follow this procedure to restore a backup ==
+
+'''1. Double click your backup file, click "Yes" to the question if you want to add the information to the system.'''
+
+[[Image(Regedit5.png, nolink)]]

@@ -1,0 +1,10 @@
+== How to update the firmware in TellStick Net ==
+
+All batches of TellStick Net support upgrades.
+[[BR]][[BR]]
+
+Choose your operating system below:
+|| [[Firmware_net_win10|Windows]] || [[Firmware_net_mac|Mac OS X]] || [[Firmware_linux|Linux]] ||
+|| [[Image(win.png, align=center, link=wiki:Firmware_net_win10)]] || [[Image(mac.png, align=center, link=wiki:Firmware_net_mac)]] || [[Image(linux.png, align=center, link=wiki:Firmware_linux)]] ||
+
+[[Include(Firmware_faq)]]

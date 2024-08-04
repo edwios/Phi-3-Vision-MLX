@@ -1,0 +1,88 @@
+= Telldus Coding Style =
+This is a document describing the preferred coding style for Telldus projects. Our coding style is based on [http://google-styleguide.googlecode.com/svn/trunk/cppguide.xml Google C++ Style Guide] with some exceptions.
+
+== Indentation ==
+Tabs are tabs! Don't use space to indent a line. If we use tabs for indentation everyone could have their editor show the preferred indentation depth.
+There is one exception to this and it is if you break a line into multiple lines. Keep the tabs as indentation until you are at the same level as the starting line and use space for the rest of the indentation.
+If we don't do this, different indentation-depths will break the nice-looking indentation:
+{{{
+#!c
+ » int retval = function(
+ » ······················1,
+ » ······················"lemon"
+ » ·····················);
+}}}
+
+== Braces ==
+Braces should always be included when writing code using if, for, while etc. blocks. There are no exceptions to this rule, even if the braces could be omitted. Leaving out braces makes code harder to maintain in the future and can also cause bugs that are very difficult to track down.
+{{{
+#!c++
+/* These are all incorrect */
+
+if ( condition ) foo();
+
+if ( condition )
+    foo();
+
+while ( condition )
+    foo();
+
+for ( var i = 0; i < 10; i++ )
+    foo(i);
+
+/* These are all correct */
+
+if ( condition ) {
+    foo();
+}
+
+while ( condition ) {
+    foo();
+}
+
+for ( i = 0; i < 10; i++ ) {
+    foo(i);
+}
+}}}
+=== Control Structures ===
+Braces should always be placed on the first line of the block they are encoding.
+{{{
+#!c++
+if ( condition ) {
+    while ( condition ) {
+        foo();
+    }
+}
+}}}
+
+=== Functions ===
+Function calls can be braced differently than conditional expressions.
+{{{
+#!c++
+/* These are both correct */
+
+function myFunction(var1, var2) {
+    return false;
+} 
+
+function myFunction(var1, var2)
+{
+    return false;
+} 
+}}}
+== Single vs. Double quotes ==
+It is common among script languages to see different uses of single/double quotes for strings. In most interpreted languages single quotes are non-interpolated and double quotes are interpolated. Consider the following example:
+{{{
+#!php
+<?php
+$var = 'Hello world!';
+
+echo "$var\n";
+echo '$var\n';
+}}}
+The output will be:
+{{{
+Hello world!
+$var\n
+}}}
+This means that for strings that don't require interpolation, it is much faster to use single quotes. Double quotes should only be used when interpolation is required and not when defining regular strings.

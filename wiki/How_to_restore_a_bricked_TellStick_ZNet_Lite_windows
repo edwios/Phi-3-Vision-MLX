@@ -1,0 +1,22 @@
+== How to restore a bricked TellStick Net v2, TellStick ZNet Lite (v1), or TellStick ZNet Lite v2 ==
+Did something happen during a firmware upgrade of your TellStick? And now it won't start again?[[BR]]
+Don't worry! You can probably restore it again yourself.
+
+If something goes wrong while upgrading the firmware in the TellStick, you'll need to put it into failsafe mode. It will then start a web browser at ip address 192.168.97.60 and it's possible to upload a new firmware there. You will need to join the same network on your computer and upload the firmware.
+
+'''Please note: It's very important that you download the correct firmware for your product! '''[[BR]]
+The firmware can be downloaded here: [[BR]][[BR]]
+'''TellStick Net v2:''' [[BR]]
+http://fw.telldus.com/tellstick-net-v2/tellstick-net-v2-1.3.1.bin
+
+'''TellStick ZNet Lite (v1):'''[[BR]]
+http://fw.telldus.com/tellstick-znet-lite/tellstick-znet-lite-1.3.1.bin
+
+'''TellStick ZNet Lite v2:'''[[BR]]
+http://fw.telldus.com/tellstick-znet-lite-v2/tellstick-znet-lite-v2-1.3.1.bin
+
+[[BR]]
+
+'''Choose your Windows version:'''
+|| [[How_to_restore_a_bricked_TellStick_ZNet_Lite_windows7|Windows 7]] || [[How_to_restore_a_bricked_TellStick_ZNet_Lite_windows10|Windows 10]]
+|| [[Image(win7.png, align=center, link=wiki:How_to_restore_a_bricked_TellStick_ZNet_Lite_windows7)]] || [[Image(win10.png, align=center, link=wiki:How_to_restore_a_bricked_TellStick_ZNet_Lite_windows10)]] ||

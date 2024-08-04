@@ -1,0 +1,29 @@
+= Guide - Upgrade driver in Windows 7 =
+
+The driver for TellStick is upgraded in TelldusCenter2.0.2 to version 2.06.00.[[BR]]
+This driver performes better in Windows 7 than the earlier version.[[BR]]
+More information about the driver is available here:[[BR]]
+http://www.ftdichip.com/Drivers/D2XX.htm [[BR]]
+If you've installed TelldusCenter2.0.1 or earlier, the old driver is installed in your system and has to be uninstalled in order to use the newer one.[[BR]]
+If you've not installed any earlier version of TelldusCenter than 2.0.2, please ignore this guide.[[BR]][[BR]]
+
+== Procedure ==
+
+'''1. Install TelldusCenter2.0.2.'''
+
+'''2. Press Start - Control Panel - Device Manager.'''
+
+'''3. Expand the "Universal Serial Bus-category".'''
+
+'''4. Right click at Telldus TellStick and choose "Update Driver Software...".'''
+
+[[Image(Win7_device_manager1.png)]]
+
+'''5. Choose "Search automatically for updated driver software".'''
+
+[[Image(Win7_device_manager2.png)]]
+
+[[Image(Win7_device_manager3.png)]]
+
+[[Image(Win7_device_manager4.png)]]
+

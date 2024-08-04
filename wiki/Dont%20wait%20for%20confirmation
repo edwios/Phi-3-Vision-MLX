@@ -1,0 +1,21 @@
+= Don't wait for confirmation from TellStick =
+
+=== Background ===
+Older TellStick batches do not send back confirmation after on/off has been sent. To allow for status update, and avoid the "An error occurred while communicating with TellStick"-error, please activate this setting. ''This setting was added in version 2.1.1 of our software.''
+[[BR]][[BR]]
+=== How to activate in Linux ===
+ 1. Open the file /etc/tellstick.conf in an editor
+ 1. Add (or edit) the row {{{ignoreControllerConfirmation = "true"}}} to the file
+ 1. Restart the service (for example {{{/etc/init.d/telldusd restart}}} in Ubuntu)
+[[BR]]
+=== How to activate in Windows ===
+ 1. Run regedit
+ 1. Locate the Telldus key by browsing to "My Computer\HKEY_LOCAL_MACHINE\SOFTWARE\Telldus" or "My Computer\HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Telldus" for 64 bit systems
+ 1. Right click the Telldus key and select "New" -> "String value"
+ 1. Name the string {{{ignoreControllerConfirmation}}}
+ 1. Modify the string, set {{{Value data}}} to {{{true}}}
+ 1. Restart the service (go to Control Panel\System and Security\Administrative Tools\Services, select TelldusService.exe and click "Restart service")
+
+[[BR]]
+=== See also ===
+[http://developer.telldus.com/ticket/98 Ticket 98]

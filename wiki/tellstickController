@@ -1,0 +1,337 @@
+= tellstickController =
+
+''' This is a third party application and Telldus will unfortunately not be able to provide customer support for its functions. '''
+
+tellstickController is used for controlling wireless receiver devices from a TellStick transmitter.
+It uses tdtool or rfcmd software to perform the actual device control.
+tellstickController can be used for manual control of devices, or used as a daemon that is controlled by a number of rule based configuration file.
+Devices and groups can be accessed by either name or id.
+
+== Download ==
+
+A stable version can be downloaded from the ftp server: [http://download.telldus.se/TellStick/Software/tellstickController/tellstickController_v2_0.tar.gz http://download.telldus.se/TellStick/Software/tellstickController/tellstickController_v2_0.tar.gz].
+
+The definite latest version is found in git and can be checked out with this command: git clone http://git.telldus.com/telldus.git [[BR]]
+The code is in the path telldus/3rdparty/tellstickcontroller.
+
+== Installation ==
+
+Either the Rfcmd or Tdtool software is needed to access a Tellstick transmitter.
+If you are using a Ubuntu-distribution check this page for more information, http://developer.telldus.se/wiki/TellStickInstallationUbuntu
+
+tellstickController is written in Perl and functions with a standard installation plus these two Perl-modules for the Tdtool version:
+
+{{{
+  * DateTime;
+  * DateTime::Event::Sunrise;
+}}}
+
+If you want to use the Rfcmd version you also need this Perl-module:
+
+{{{
+  * DB_File;
+}}}
+
+The extra Perl-modules can be installed by executing the following if you use a Ubuntu distribution (using apt-get is also OK if aptitude does not work):
+
+{{{
+
+* sudo aptitude install libmldbm-perl
+* sudo aptitude install libdatetime-event-sunrise-perl
+
+}}}
+
+== tellstickControllerTdtool ==
+The Tdtool version needs a working configuration of [wiki:TellStick_conf /etc/tellstick.conf] for access to device aliases.
+These alias can then be used in the tellstickcontroller.conf file to configure rules for controlling devices.
+=== tellstickControllerTdtool usage ===
+{{{
+ NAME
+   tellstickControllerTdtool
+
+ SYNOPSIS
+   tellstickControllerTdtool [options] 
+
+ DESCRIPTION
+   tellstickController is used for controlling wireless recevier devices from
+   a TellStick transmitter. This version uses the tdtool software to perform
+   the actual device control. tellstickController can be used for manual
+   control of devices, or used as a daemon that is controlled by a number of
+   configuration file rules.
+   Devices and groups can be accessed by either name or id.
+   States can be set to ON, OFF or an integer between 0-255 for dimmer.
+    
+   -h, --help          Show this help text.
+   -v, --verbose       Show extra information.
+   -d, --daemon        Starts in daemon mode.
+   -f, --file F        Set configfile to file F.
+   -c, --check         Check content of configuration file.
+   -t, --test          Test mode, no real devices will used.
+   -a, --aliases       List of aliases for devices/groups.
+   -l, --list          List states for all devices/groups.
+   -s, --set D S       Set device D to state S
+   -g, --get D         Get state for device/group D.
+   -w, --swapfirst G   Swap states for group G based on first device state.
+   -x, --swap D        Swap state for device/group D.
+
+ EXAMPLES
+   tellstickControllerTdtool -l
+   tellstickControllerTdtool --set device_alias on
+   tellstickControllerTdtool --swap device_alias
+   tellstickControllerTdtool -d -f myConfigFile.conf
+
+ DEPENDENCIES
+   The following Perl modules needs to be installed:
+   DateTime and DateTime::Event::Sunrise
+
+ FILES
+   tellstickController.conf
+   tellstickController.log
+   tellstickController.pid
+
+ CONFIGURATION
+   The configuration file consists of a number of settings 'Set', a number of
+   group aliases 'Group', and a number of device rules 'Rules'.
+  
+   The settings controls sunrise/sunset, logfile, pidfile, etc.
+  
+   The groups configures a list of devices and a delay time.
+
+   The rules can be written as a string containing two parts.
+   The first part is optional and ends with an '/'. It can contain one or more
+   of these keywords 'Weekend', 'Workweek', 'Monday', 'Tuesday', 'Wednesday',
+   'Thursday', 'Friday', 'Saturday' and 'Sunday'. A specified date like
+   '2008-03-18', '2008-03-##', '####-03-##' or '####-##-15' is also allowed.
+   The second part is mandatory and is either a expression or the keyword 'No'.
+   The expression can contain a micture of these keywords 'Sunrise', 'Sunset',
+   'Random(HH:MM)', 'HH:MM' and 'Dimmer(HH:MM,startlevel,stoplevel,steplevel)'.
+   A Dimmer can be controlled to change dim level from startlevel to stoplevel
+   by adding/subtracting steplevel value every HH:MM time period.
+
+   Example rule: Weekend/07:15
+   Example rule: Monday+Sunday/07:15
+   Example rule: 2008-03-##/12:10
+   Example rule: 07:15+Random(02:00)
+   Example rule: Sunset-00:30
+   Example rule: Workweek/07:00+Dimmer(00:01,5,255,25)
+
+ AUTHOR
+   Original version written by Rickard Andersson
+
+ LICENSE
+   Copyright (C) 2008-2010 Rickard Andersson. Version 2.0.0
+   This program comes with ABSOLUTELY NO WARRANTY.
+   This is free software, and you are welcome to redistribute it under certain
+   conditions; See license file for details.
+}}}
+=== tellstickControllerTdtool configuration file ===
+{{{
+################################################################################
+#
+# Configuration file for tellstickController 
+#
+# Copyright (C) 2008-2010 Rickard Andersson (ran42ran@gmail.com)
+# Version: 2.0.0
+#
+################################################################################
+
+# List of location settings.
+#
+# Usage example:
+# Set  Key       Value
+#
+# Set  Timezone  Europe/Stockholm
+#
+Set  Timezone   Europe/Stockholm
+Set  Latitude   58.24
+Set  Longitude  15.31
+Set  pidfile    /var/run/tellstickController.pid
+Set  logfile    /var/log/tellstickController.log
+Set  program    /usr/bin/tdtool
+
+# Groups used for handling a list of aliases.
+#
+# Usage examples:
+# Group  Name              Id  Delay  Aliases
+# Group  Livingroom_walls  11  60     Livingroom_wall_north  Livingroom_wall_east
+# Group  Kitchen           22   5     Kitchen_cabinets       Kitchen_window
+#
+Group  allDevices  42  10  Device1  Device2
+
+# Timer rules for reciever devices.
+#
+# Usage examples:
+# Rule  Alias             DeviceOn         DeviceOff
+#
+# Rule  BedroomWindow     Sunrise          Sunrise+01:30
+# Rule  BedroomWindow     18:33            23:10+Random(00:45)
+# Rule  MythTv_Backlight  Weekend/20:00    Weekend/Sunset
+# Rule  device42          2008-03-##/18:45 2008-03-##/22:11
+# Rule  device42          No               02:00
+#
+Rule  device1     weekend/sunrise                        weekend/08:45
+Rule  device1     sunset+00:15                           23:30+Random(00:20)
+Rule  device2     Workweek/07:00+Dimmer(00:02,0,200,25)  weekend/08:45
+Rule  allDevices  16:45                                  23:45
+}}}
+== tellstickControllerRfcmd ==
+{{{
+ NAME
+   tellstickControllerRfcmd
+
+ SYNOPSIS
+   tellstickControllerRfcmd [options] 
+
+ DESCRIPTION
+   tellstickController is used for controlling wireless recevier devices from
+   a TellStick transmitter. This version uses the rfcmd software to perform
+   the actual device control. tellstickController can be used for manual
+   control of devices, or used as a daemon that is controlled by a number of
+   configuration file rules.
+   A small database is used for keeping track of device states between every
+   execution of tellstickController.
+
+   -h, --help          Show this help text.
+   -v, --verbose       Show extra information.
+   -d, --daemon        Starts in daemon mode.
+   -f, --file F        Set configfile to file F.
+   -c, --check         Check content of configuration file.
+   -t, --test          Test mode, no real devices will used.
+   -a, --aliases       List of aliases for devices/groups.
+   -l, --list          List states for all devices/groups.
+   -s, --set D S       Set device D to state S.
+   -g, --get D         Get state for device/group D.
+   -w, --swapfirst G   Swap states for group G based on first device state.
+   -x, --swap D        Swap state for device/group D.
+
+ EXAMPLES
+   tellstickControllerRfcmd -l
+   tellstickControllerRfcmd --set device_alias on
+   tellstickControllerRfcmd --swap device_alias
+   tellstickControllerRfcmd -d -f myConfigFile.conf
+
+ DEPENDENCIES
+   The following Perl modules needs to be installed:
+   DB_File, DateTime and DateTime::Event::Sunrise
+
+ FILES
+   tellstickController.conf
+   tellstickController.db
+   tellstickController.log
+   tellstickController.pid
+
+ CONFIGURATION
+   The configuration file consists of a number of settings 'Set', a number of
+   device aliases 'Alias', and a number of device rules 'Rules'.
+  
+   The settings controls sunrise/sunset, logfile, pidfile, etc.
+
+   The aliases configures device name, channel, code, etc.
+ 
+   The groups configures a list of devices and a delay time.
+ 
+   The rules can be written as a string containing two parts.
+   The first part is optional and ends with an '/'. It can contain one or more
+   of these keywords 'Weekend', 'Workweek', 'Monday', 'Tuesday', 'Wednesday',
+   'Thursday', 'Friday', 'Saturday' and 'Sunday'. A specified date like
+   '2008-03-18', '2008-03-##', '####-03-##' or '####-##-15' is also allowed.
+   The second part is mandatory and is either a expression or the keyword 'No'.
+   The expression can contain a micture of these keywords 'Sunrise', 'Sunset',
+   'Random(HH:MM)' and 'HH:MM'.
+
+   Example rule: Weekend/07:15
+   Example rule: Monday+Sunday/07:15
+   Example rule: 2008-03-##/12:10
+   Example rule: 07:15+Random(02:00)
+   Example rule: Sunset-00:30
+
+ AUTHOR
+   Original version written by Rickard Andersson
+
+ LICENSE
+   Copyright (C) 2008-2010 Rickard Andersson. Version 2.0.0
+   This program comes with ABSOLUTELY NO WARRANTY.
+   This is free software, and you are welcome to redistribute it
+   under certain conditions; See license file for details.
+}}}
+=== tellstickControllerRfcmd configuration file ===
+{{{
+################################################################################
+#
+# Configuration file for tellstickController 
+#
+# Copyright (C) 2008-2010 Rickard Andersson (ran42ran@gmail.com)
+# Version: 2.0.0
+#
+################################################################################
+
+# List of location settings.
+#
+# Usage example:
+# Set  Key       Value
+#
+# Set  Timezone  Europe/Stockholm
+#
+Set  Timezone   Europe/Stockholm
+Set  Latitude   58.24
+Set  Longitude  15.31
+Set  dbfile     /var/lib/tellstickController.db
+Set  pidfile    /var/run/tellstickController.pid
+Set  logfile    /var/log/tellstickController.log
+
+# Aliases for recevier devices.
+#
+# Usage example:
+# Alias  Name           Sender            Dimmer  Protocol  Housecode  Channel
+#
+# Alias  BedroomWindow  /dev/tellstick0   yes     Nexa      A          1
+# Alias  device42       /dev/tellstick1   No      Waveman   B          3
+#
+#   or
+#
+# Usage example:
+# Alias  Name              Sender        Dimmer  Protocol  Channel
+#
+# Alias  MythTv_Backlight  /dev/ttyUSB0  No      Sartano   000000001
+#
+Alias  device1  /dev/tellstick  No  Nexa  A  1
+Alias  device2  /dev/tellstick  No  Nexa  A  2
+
+# Groups used for handling a list of aliases.
+#
+# Usage examples:
+# Group  Name              Delay  Aliases
+# Group  Livingroom_walls  60     Livingroom_wall_north  Livingroom_wall_east
+# Group  Kitchen            5     Kitchen_cabinets       Kitchen_window
+#
+Group  allDevices  10  Device1  Device2
+
+# Timer rules for reciever devices.
+#
+# Usage examples:
+# Rule  Alias             DeviceOn         DeviceOff
+#
+# Rule  BedroomWindow     Sunrise          Sunrise+01:30
+# Rule  BedroomWindow     18:33            23:10+Random(00:45)
+# Rule  MythTv_Backlight  Weekend/20:00    Weekend/Sunset
+# Rule  device42          2008-03-##/18:45 2008-03-##/22:11
+# Rule  device42          No               02:00
+#
+Rule  device1     weekend/sunrise                        weekend/08:45
+Rule  device1     sunset+00:15                           23:30+Random(00:20)
+Rule  device2     Workweek/07:00+Dimmer(00:02,0,200,25)  weekend/08:45
+Rule  allDevices  16:45                                  23:45
+}}}
+== Tips ==
+
+  * tellstickController can be run on MythTV backend to control lamps, MythTV frontend etc.
+
+  * Except of automatically controlling lamps via rules in tellstickcontroller.conf and tellstickcontrollerDaemon, all receivers can be controlled manually with remote from all rooms.
+
+  * All buttons on the remote control are bound to different events through the softwares KeyWatcher and XMacro.
+
+  * Information about how to use all the buttons on the remote control is available at [http://mythtv.org/wiki/index.php/Logitech_UltraX_Media_Remote http://mythtv.org/wiki/index.php/Logitech_UltraX_Media_Remote].
+
+  * Information about the KeyWatcher software is available at [http://criticalmass.sourceforge.net/keyWatcher.php http://criticalmass.sourceforge.net/keyWatcher.php].
+
+  * Information om XMacro programmet finns här, http://xmacro.sourceforge.net/

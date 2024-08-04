@@ -1,0 +1,39 @@
+== How to restore a bricked TellStick Net v2, TellStick ZNet Lite (v1), or TellStick ZNet Lite v2 ==
+Did something happen during a firmware upgrade of your TellStick? And now it won't start again?[[BR]]
+Don't worry! You can probably restore it again yourself.
+
+If something goes wrong while upgrading the firmware in the TellStick, you'll need to put it into failsafe mode. It will then start a web browser at ip address 192.168.97.60 and it's possible to upload a new firmware there. You will need to join the same network on your computer and upload the firmware.
+
+'''Please note: It's very important that you download the correct firmware for your product! '''[[BR]]
+The firmware can be downloaded here: [[BR]][[BR]]
+'''TellStick Net v2:''' [[BR]]
+http://fw.telldus.com/tellstick-net-v2/tellstick-net-v2-1.3.1.bin
+
+'''TellStick ZNet Lite (v1):'''[[BR]]
+http://fw.telldus.com/tellstick-znet-lite/tellstick-znet-lite-1.3.1.bin
+
+'''TellStick ZNet Lite v2:'''[[BR]]
+http://fw.telldus.com/tellstick-znet-lite-v2/tellstick-znet-lite-v2-1.3.1.bin
+
+[[BR]]
+=== Linux ===
+== Under construction! ==
+Disconnect the power to TellStick[[BR]]
+Press and hold the button next to the USB-connector, using a paperclip or other sharp object.[[BR]]
+Connect the power again.[[BR]]
+The middle LED should now flash four times. First flash should be longer and then three shorter flashes. Release the button after the fourth flash. [[BR]]
+The middle LED will now confirm by flashing fast for one second.[[BR]]
+
+
+Join the sub-network by adding an IP alias. Type the command: [[BR]]
+sudo ifconfig eth0:0 192.168.97.6 [[BR]]
+Replace eth0 with the interface you are using.[[BR]][[BR]]
+
+Open a web browser and navigate to http://192.168.97.60/ [[BR]][[Br]]
+[[Image(firmware_update.png, nolink)]][[BR]]
+
+[[BR]] Click "Browse..." and select the .bin file you downloaded earlier.[[BR]]
+Click "Update firmware".[[BR]][[BR]]
+
+The firmware will now upgrade and the device will reboot, it might take a couple of minutes. [[BR]]
+Note: The web browser will not tell when the upgrade is finished, so just close the browser. 

@@ -1,0 +1,9 @@
+== How to update the firmware in TellStick Net using Mac OS X ==
+
+Download and run the TellStickNetFlasher-utility.[[BR]]
+[http://download.telldus.com/TellStick/Software/TellStickNetFlasher/TellStickNetFlasher.dmg]
+[[BR]][[BR]][[BR]]
+If you experience any problems with the TellStickNetFlasher-utility, please try this guide instead: 
+[http://developer.telldus.com/wiki/Firmware_mac_terminal]
+
+[[Include(Firmware_faq)]]

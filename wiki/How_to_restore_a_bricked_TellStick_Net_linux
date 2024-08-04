@@ -1,0 +1,19 @@
+== How to restore a bricked TellStick Net ==
+Did something happen during a firmware upgrade of your TellStick Net? And now it won't start again?[[BR]]
+Don't worry! You can probably restore it again yourself.
+
+If something goes wrong while upgrading the firmware in the TellStick Net, it will automatically reset itself to ip address 192.168.97.60 and listen for a new software. All you need to do is to join the same network on your computer and upload the firmware using tftp. Please read below for your operating system.
+
+The latest firmware can be downloaded here: http://download.telldus.com/TellStick/Software/firmware/tellstick_net_fw17.hex
+
+Cycle the power to the TellStick Net and make sure the green led on the network connector flashes in groups of seven blinks. If it does it is now in recovery mode and is ready for a new firmware.
+
+[[BR]][[BR]]
+=== Linux ===
+== Under construction! ==
+
+Join the sub-network by adding an IP alias. Type the command: [[BR]]
+sudo ifconfig eth1:0 192.168.97.6 [[BR]]
+Replace eth1 with the interface you are using.[[BR]][[BR]]
+Send the firmware to TellStick Net by this command:[[BR]]
+atftp -p -l /home/cos/Downloads/tellstick_net_fw17.hex --tftp-timeout 1 192.168.97.60[[BR]]

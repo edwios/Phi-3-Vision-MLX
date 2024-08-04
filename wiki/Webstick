@@ -1,0 +1,25 @@
+= Webstick =
+
+== Download ==
+
+[http://download.telldus.se/TellStick/Software/WebStick/WebStick.zip WebStick.zip]
+
+== Description ==
+
+By using this little (<50Kbyte) and simple web server you can control your home from long distances using your mobile phone or a web browser.
+
+
+== Instructions ==
+
+Unpack to an optional destination. Run server.exe which will create a file called default.htm.
+
+Open a web browser, go to http://localhost/ or the ip number of the computer to test. If you have other web servers installed on your computer webstick will be put on the next free port of the computer i.e. 81, 82 and so on.
+
+
+== Screenshot ==
+
+[[Image(Webstick.jpg)]]
+
+== Thanks to ==
+
+  * Janne

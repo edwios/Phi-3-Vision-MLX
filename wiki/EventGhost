@@ -1,0 +1,28 @@
+= EventGhost =
+
+[http://www.eventghost.org EventGhost] is a open-source automation tool for Windows, which can be extended with plugins.
+It is possible to use varius controllers as remote controllers to trigger macros, which then controlls a computer and its connected peripherals. When the user has configured everything needed, the software runs in the background and waits for an event. It is for example possible to controll a Media-PC with a normal remote control.
+
+Example of events:
+ * Hotkeys
+ * Another software starts
+ * Another software (e.g. EventGhost on another computer), Girder or Netremote sends an event over TCP/IP
+ * A specific HTTP-request, made to the built in webserver
+ * Another software sending an event by ActiveX
+
+Exempel of things to control:
+ * Controlling lights etc. wirelessly with a TellStick!
+ * Start a program on the computer
+ * Emulate a keypress
+ * Control the soundcard
+ * Move and resize a window
+ * Send IR commands to other peripherals
+
+[[Image(EventGhost_plugin.png)]]
+
+== Download ==
+
+In EventGhost 0.3.6 and later, the TellStick plugin is shipped with the official EventGhost distribution
+
+== Source code ==
+[http://eventghost.svn.sourceforge.net/viewvc/eventghost/trunk/plugins/TellStick/]

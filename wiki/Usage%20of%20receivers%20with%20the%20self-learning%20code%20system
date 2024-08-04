@@ -1,0 +1,27 @@
+= Guide - Usage of receivers with the self-learning code system =
+
+Using receivers of the self-learning code system with TellStick works perfectly fine. To use this kind of receiver you have to make up a house- and unit code and then "teach" the code to the receiver.
+
+See a video-guide of the steps:
+http://www.youtube.com/watch?v=IVhkp734HoU
+
+== Procedure ==
+
+'''1. Add a new device in TelldusCenter.'''
+
+'''2. Choose the type of receiver in the list and assign it a name.'''
+
+'''3. Press Randomize to generate a random house code and choose a unit code.'''
+
+[[Image(Add_device.png)]]
+
+'''4. Press Save'''
+
+'''5. Press the learning button on the receiver. The learning diod will now start blinking.'''
+
+'''6. You now have 5 seconds to click the learn button in TelldusCenter.'''
+
+'''7. The receiver will blink twice to communicate that the new code has been learnt.'''
+
+'''8. Test the setting by switching the unit on and off in TelldusCenter.
+

@@ -1,0 +1,23 @@
+This guide describes how to decode and add a new protocol to TellStick and TellStick Duo
+
+''This guide is only a stub, please help us by expanding it.''
+
+== Prerequisites ==
+* A tool to sniff the transmitter[[BR]]
+  We use a [http://www.saleae.com/logic logic analyzer from Saleae]
+* Knowledge of the [doxygen:/TellStick.html TellStick protocol]
+
+== Logging the transmitter ==
+Before any work can be done you must analyze and understand the protocol used by the transmitter. To do so you must first connect the logic analyzer to the transmitter PCB. You need to find the output from the microcontroller connected to the RF transmitter.
+
+== Decodeing the data ==
+[TODO]
+
+== Implementing a protocol in telldus-core ==
+[TODO]
+
+== Implementing reception ==
+[TODO]
+
+== Updating the protocol in telldus-core for reception ==
+[TODO]

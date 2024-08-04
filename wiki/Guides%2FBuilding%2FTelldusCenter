@@ -1,0 +1,14 @@
+This guide describes how to build TelldusCenter from source. This guide is only if you want to help out and develop new functions in TelldusCenter.
+
+''This guide is only a stub, please help us by expanding it.''
+
+== Mac OS X ==
+In order to build the software under OS X some softwares is required. You need at least the following:
+
+Xcode.
+ Download this from http://developer.apple.com or the Mac App Store
+[http://www.cmake.org/cmake/resources/software.html CMake]
+Qt (>=4.7.4)
+ We build the Qt from source using the following configure[[BR]]
+ {{{./configure -arch "x86 x86_64" -openssl-linked -no-webkit -no-xmlpatterns -nomake examples -nomake demos -opensource -confirm-license}}}
+[http://www.ftdichip.com/Drivers/D2XX.htm libfd2xx]
