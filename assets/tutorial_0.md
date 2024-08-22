@@ -2,7 +2,7 @@
 
 ## Introduction:
 
-Welcome to an exciting series on optimizing cutting-edge AI models for Apple Silicon! Over the next few weeks, we'll dive deep into the process of porting Phi-3-Vision, a powerful and compact vision-language model, from Hugging Face to MLX.
+Welcome to a series on optimizing cutting-edge AI models for Apple Silicon! Over the next few weeks, we'll dive deep into the process of porting Phi-3-Vision, a powerful and compact vision-language model, from Hugging Face to MLX.
 
 This series is designed for AI enthusiasts, developers, and researchers interested in running advanced models efficiently on Mac devices. For those eager to get started, you can find the MLX ports of both Phi-3-Mini-128K and Phi-3-Vision in my GitHub repository: https://github.com/JosefAlbers/Phi-3-Vision-MLX
 
@@ -44,17 +44,17 @@ These resources provide a great foundation for anyone looking to explore MLX and
 
 We'll start by comparing the original Hugging Face implementation with our MLX port, highlighting key differences in syntax and how MLX leverages Apple Silicon's unified memory architecture.
 
-### 2. Implementing Su-RoPE for 128K Context
+### 2. Implementing SuRoPE for 128K Context
 
-We'll explore the Surrogate Rotary Position Embedding (Su-RoPE) implementation that enables Phi-3-Vision to handle impressive 128K token contexts.
+We'll explore the Su-scaled Rotary Position Embedding (SuRoPE) implementation that enables Phi-3-Vision to handle impressive 128K token contexts.
 
 ### 3. Optimizing Text Generation in MLX: From Batching to Advanced Techniques
 
-Learn how to implement efficient batch text generation, a crucial feature for many real-world applications. We'll also cover custom KV-Cache implementation, streaming capabilities, and other text generation optimizations.
+Learn how to implement efficient batch text generation, an essential feature for many real-world applications. We'll also cover custom KV-Cache implementation and other text generation optimizations.
 
 ### 4. LoRA Fine-tuning and Evaluation on MLX
 
-Discover how to perform Low-Rank Adaptation (LoRA) training, enabling efficient fine-tuning of Phi-3-Vision on custom datasets. We'll also develop comprehensive evaluation techniques to ensure our LoRA-adapted model meets or exceeds the original's performance.
+Discover how to perform Low-Rank Adaptation (LoRA) training, enabling efficient fine-tuning of Phi-3-Vision on custom datasets.
 
 ### 5. Building a Versatile AI Agent
 
